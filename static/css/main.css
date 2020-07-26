@@ -118,11 +118,11 @@ select {
 /*||  ======================  Main Css Starts  ======================  ||*/
 /*||  ----  Custom Classes Starts  ----  ||*/
 .text-blue-light {
-  color: #20bf6b !important;
+  color: #13294b  !important;
 }
 
 .text-blue {
-  color: #20bf6b !important;
+  color: #13294b  !important;
 }
 
 .text-black {
@@ -130,11 +130,11 @@ select {
 }
 
 .text-rose-light {
-  color: #20bf6b !important;
+  color: #13294b  !important;
 }
 
 .text-rose {
-  color: #20bf6b !important;
+  color: #13294b  !important;
 }
 
 .text-trans {
@@ -142,11 +142,11 @@ select {
 }
 
 .bg-blue-light {
-  background-color: #20bf6b !important;
+  background-color: #13294b  !important;
 }
 
 .bg-blue {
-  background-color: #20bf6b !important;
+  background-color: #13294b  !important;
 }
 
 .bg-black {
@@ -154,11 +154,11 @@ select {
 }
 
 .bg-rose-light {
-  background-color: #20bf6b !important;
+  background-color: #13294b  !important;
 }
 
 .bg-rose {
-  background-color: #20bf6b !important;
+  background-color: #13294b  !important;
 }
 
 .bg-trans {
@@ -237,7 +237,7 @@ select {
   background: rgba(255, 255, 255, 0.03);
 }
 .nav-main a.nav-link.active:after {
-  background: #20bf6b;
+  background: #13294b ;
 }
 
 .plNames-main {
@@ -282,7 +282,7 @@ select {
 .userName {
   width: 100%;
   padding: 0.75rem 1.5rem;
-  background: #20bf6b;
+  background: #13294b ;
   font-size: 1.25rem;
   font-weight: 500;
   margin-top: auto;
@@ -336,7 +336,7 @@ select {
   -ms-transform: translateX(50%);
   -o-transform: translateX(50%);
   transform: translateX(50%);
-  background: #20bf6b;
+  background: #13294b ;
   opacity: 0;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
@@ -484,13 +484,13 @@ a.viewMore:hover {
   color: #fff;
 }
 .player-song-name a:hover h3 {
-  color: #20bf6b;
+  color: #13294b ;
 }
 .player-song-name h3 {
   font-size: 1.125rem;
   margin-bottom: 0.25rem;
   letter-spacing: 1px;
-  color: #20bf6b;
+  color: #13294b ;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
   -ms-transition: all 0.25s ease-in-out;
@@ -559,7 +559,7 @@ a.viewMore:hover {
   font-weight: 900;
 }
 .player-controls-btn#repeat.looped {
-  color: #20bf6b;
+  color: #13294b ;
 }
 .player-controls-main {
   display: flex;
@@ -626,7 +626,7 @@ a.viewMore:hover {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  background: #20bf6b;
+  background: #13294b ;
   border-radius: 4px;
 }
 #volume-range-thumb {
@@ -679,7 +679,7 @@ a.viewMore:hover {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  background: #20bf6b;
+  background: #13294b ;
   border-radius: 4px;
 }
 #duration-range-thumb {
@@ -709,7 +709,7 @@ a.viewMore:hover {
 }
 .addToFav.inFav:before {
   font-weight: 900;
-  color: #20bf6b;
+  color: #13294b ;
 }
 
 /*||  ======================  Account Starts  ======================  ||*/
@@ -725,11 +725,11 @@ a.viewMore:hover {
   padding: 0.5rem 1rem !important;
 }
 .header .nav-link:hover {
-  color: #20bf6b;
+  color: #13294b ;
 }
 
 #account {
-  background: linear-gradient(45deg, #20bf6b 0%, #20bf6b 100%);
+  background: linear-gradient(45deg, #13294b  0%, #13294b  100%);
 }
 
 .section-bg {
@@ -747,7 +747,7 @@ a.viewMore:hover {
   min-height: 100%;
 }
 .section-menu-nav-item {
-  background: linear-gradient(45deg, #20bf6b 0%, #20bf6b 100%);
+  background: linear-gradient(45deg, #13294b  0%, #13294b  100%);
   position: relative;
   padding-top: 1px;
 }
@@ -804,7 +804,7 @@ a.viewMore:hover {
   padding: 3rem;
 }
 .section-content h3 {
-  color: #20bf6b;
+  color: #13294b ;
   font-weight: 400;
   font-size: 2rem;
   position: relative;
@@ -819,7 +819,7 @@ a.viewMore:hover {
   right: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(45deg, #20bf6b 0%, #20bf6b 100%);
+  background: linear-gradient(45deg, #13294b  0%, #13294b  100%);
 }
 
 #addUserImg {
@@ -867,7 +867,7 @@ a.viewMore:hover {
 }
 .form-input-bg {
   padding: 1px;
-  background: linear-gradient(45deg, #20bf6b 0%, #20bf6b 100%);
+  background: linear-gradient(45deg, #13294b  0%, #13294b  100%);
 }
 .form-account p {
   color: #000310;
@@ -885,7 +885,7 @@ a.viewMore:hover {
 }
 .form-control:focus {
   outline: none;
-  box-shadow: 0px 8px 10px -8px #20bf6b;
+  box-shadow: 0px 8px 10px -8px #13294b ;
 }
 
 @keyframes collide_left {
@@ -916,7 +916,7 @@ a.viewMore:hover {
   padding: 0.625rem 1.25rem;
   border-radius: 0;
   border: none;
-  background: linear-gradient(45deg, #20bf6b 20%, #20bf6b 100%);
+  background: linear-gradient(45deg, #13294b  20%, #13294b  100%);
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: 500;
@@ -954,7 +954,7 @@ a.viewMore:hover {
   -o-transform: translate(-100%, -50%);
   transform: translate(-100%, -50%);
   z-index: -1;
-  background: linear-gradient(45deg, #20bf6b 20%, #20bf6b 100%);
+  background: linear-gradient(45deg, #13294b  20%, #13294b  100%);
   border-radius: 50%;
 }
 .button::before {
@@ -1071,7 +1071,7 @@ a.viewMore:hover {
   color: #a1a1a1;
 }
 .songs-col-caption p.playLink {
-  color: #20bf6b;
+  color: #13294b ;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1rem;
@@ -1099,7 +1099,7 @@ a.viewMore:hover {
   background: rgba(0, 3, 16, 0.8);
 }
 #header-index.header-fix .nav-link:hover {
-  color: #20bf6b;
+  color: #13294b ;
 }
 
 #section-banner {
@@ -1124,7 +1124,7 @@ a.viewMore:hover {
 }
 
 #section-guest {
-  background: url(../images/a.jpg) no-repeat;
+  background: url(../images/orange-blue-wave.jpg) no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -1149,7 +1149,7 @@ a.viewMore:hover {
 }
 .guest-content a {
   color: #fff;
-  background: #20bf6b;
+  background: #13294b ;
   padding: 0.625rem 2rem;
   border-radius: 2rem;
   min-width: 200px;
@@ -1160,7 +1160,7 @@ a.viewMore:hover {
   font-family: "Oswald", sans-serif;
 }
 .guest-content a:hover {
-  background: #1ca95f;
+  background: #E84A27;
 }
 
 #footer {
@@ -1175,7 +1175,7 @@ a.viewMore:hover {
   margin: 5px 0;
 }
 .footer-link:hover {
-  color: #20bf6b;
+  color: #13294b ;
 }
 .footer-link.logo {
   font-size: 2.5rem;
@@ -1198,7 +1198,7 @@ a.viewMore:hover {
   background: #212325;
 }
 .footer-social-link:hover {
-  background: #20bf6b;
+  background: #13294b ;
   color: #fff;
 }
 .footer-social-link i {
@@ -1254,7 +1254,7 @@ a.viewMore:hover {
   background: #212325;
   right: 0;
   width: 80px;
-  color: #20bf6b;
+  color: #13294b ;
 }
 .playerSearch-submit i {
   position: absolute;
