@@ -90,13 +90,24 @@ WSGI_APPLICATION = 'buffer_hub.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'i0i2syopai9pjbtu',
+#         'USER': 'ap74tui5ygxnn8fc',
+#         'PASSWORD': 'qzgpa8662t9k06p8',
+#         'HOST': 'a5s42n4idx9husyc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'i0i2syopai9pjbtu',
-        'USER': 'ap74tui5ygxnn8fc',
-        'PASSWORD': 'qzgpa8662t9k06p8',
-        'HOST': 'a5s42n4idx9husyc.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        'NAME': 'buffer_hub',
+        'USER': 'djangoInterface',
+        'PASSWORD': 'Django123!',
+        'HOST': 'SG-bufferhub-36641.servers.mongodirector.com',
         'PORT': '3306',
     }
 }
