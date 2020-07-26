@@ -77,41 +77,41 @@
             <div id="insert-demo">
               <h1>Insert Demo</h1>
 
-              <form action="/register" method="post">
+              <form>
 
               <div class="top-row">
                 <div class="field-wrap">
-                  <label for="fname">
+                  <label for="Letter_Grade">
                     Letter_Grade<span class="req">*</span>
                   </label>
-                  <input type="text" id="fname" name="fname" required autocomplete="off" />
+                  <input type="text" id="insert_Letter_Grade" name="Letter_Grade" required autocomplete="off" />
                 </div>
 
                 <div class="field-wrap">
-                  <label for="lname">
+                  <label for="GPA_HOURS">
                     GPA_HOURS<span class="req">*</span>
                   </label>
-                  <input type="text" id="lname" name="lname" required autocomplete="off"/>
+                  <input type="text" id="insert_GPA_HOURS" name="GPA_HOURS" required autocomplete="off"/>
                 </div>
               </div>
 
               <div class="field-wrap">
-                <label for="emailid">
+                <label for="email_id">
                   email_id<span class="req">*</span>
                 </label>
-                <input type="email" id="emailid" name="emailid" required autocomplete="off"/>
+                <input type="email" id="insert_email_id" name="email_id" required autocomplete="off"/>
               </div>
 
               <div class="field-wrap">
-                <label for="emailid">
+                <label for="Course_Comb">
                   Course_Comb<span class="req">*</span>
                 </label>
-                <input type="text" id="emailid" name="emailid" required autocomplete="off"/>
+                <input type="text" id="insert_Course_Comb" name="Course_Comb" required autocomplete="off"/>
               </div>
 
 
 
-              <button type="submit" class="button button-block"/>Insert</button>
+              <button type="submit" onclick="demoUpdate()" class="button button-block">Insert</button>
 
               </form>
 
@@ -123,13 +123,13 @@
               <form action="/signin" method="post">
 
               <div class="field-wrap">
-                <label for="emailid">
+                <label for="query_emailid">
                   email_id<span class="req">*</span>
                 </label>
-                <input type="email" id="emailid" name="emailid" required autocomplete="off"/>
+                <input type="email" id="query_emailid" name="query_emailid" required autocomplete="off"/>
               </div>
 
-              <button type="submit" class="button button-block"/>Get Results</button>
+              <button type="submit" class="button button-block">Get Results</button>
 
               </form>
 
@@ -158,7 +158,7 @@
                 <input type="text" id="emailid" name="emailid" required autocomplete="off"/>
               </div>
 
-              <button type="submit" class="button button-block"/>Update</button>
+              <button type="submit" class="button button-block">Update</button>
 
               </form>
 
@@ -182,7 +182,7 @@
               </div>
 
 
-              <button type="submit" class="button button-block"/>Update</button>
+              <button type="submit" class="button button-block">Update</button>
 
               </form>
 
