@@ -8,6 +8,8 @@ from django.contrib.auth import login as auth_login
 from admin.homepage.models import Homepage
 from django.db import connection
 from django_globals import globals
+from rest_framework.response import Response
+from django.http import JsonResponse
 import uuid
 import re
 
@@ -38,18 +40,21 @@ def demo_insert(request):
 	if request.method == 'POST':
 		info = {}
 		info['email_Id'] = request.POST['email_Id']
-		info['Course_Comb'] = request.post['Course_Comb']
-		info['Letter_Grade'] = request.post['Letter_Grade']
-		info['GPA_Hours'] = request.post['GPA_Hours']
+		info['Course_Comb'] = request.POST['Course_Comb']
+		info['Letter_Grade'] = request.POST['Letter_Grade']
+		info['GPA_Hours'] = float(request.POST['GPA_Hours'])
 		info['_id'] = str(uuid.uuid1())
+		#print(type(info['GPA_Hours']))
+		#print(quality_points[info['Letter_Grade']])
 		info['GPA_QUALITY_POINTS'] = info['GPA_Hours'] * quality_points[info['Letter_Grade']]
 
 		with connection.cursor() as cursor:
 			cursor.execute("Insert Into Student_Course_Table(_id, email_Id, Course_Comb, Letter_Grade, GPA_HOURS, GPA_QUALITY_POINTS) Values (%s, %s, %s, %s, %s, %s)",
-            [info['_id'], info["email_Id"], info["Course_Comb"], info["Letter_Grade"], info["GPA_HOURS"], info["GPA_QUALITY_POINTS"]])
+            [info['_id'], info["email_Id"], info["Course_Comb"], info["Letter_Grade"], info["GPA_Hours"], info["GPA_QUALITY_POINTS"]])
 
 		messages.success(request, 'Entry Successful')
-		return 
+		#return info
+		return JsonResponse(info)
 	return
 
 def demo_query(request):
@@ -62,14 +67,14 @@ def demo_query(request):
 			#cursor.fetchone()
 			result = cursor.fetchone()
 		messages.success(request, 'Entry Successful')
-		return Response(result)
+		return JsonResponse(result)
 	return
 
 def demo_update(request):
 	if request.method == 'POST':
 		info = {}
 		info['email_Id'] = request.POST['email_Id']
-		info['Course_Comb'] = request.post['Course_Comb']
+		info['Course_Comb'] = request.POST['Course_Comb']
 		result = None
 		with connection.cursor() as cursor:
 			cursor.execute("Select * From Student_Course_table Where email_Id = " + 
@@ -87,7 +92,7 @@ def demo_update(request):
             [info["Course_Comb"], info["Letter_Grade"], info["GPA_QUALITY_POINTS"], temp["_id"]])
 			result = cursor.fetchone()
 		messages.success(request, 'Update Successful')
-		return Response(result)
+		return JsonResponse(result)
 	return
 
 def demo_delete(request):
@@ -101,7 +106,7 @@ def demo_delete(request):
 				info['email_Id'] + " and Course_Comb = " + info['Course_Comb'] + ";")
 			#cursor.fetchone()
 		messages.success(request, 'Delete Successful')
-		return 
+		return JsonResponse(info)
 	return
 
 def signup(request):
