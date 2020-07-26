@@ -40,14 +40,13 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
 
 function demoInsert() {
-  // var values = {};
-  console.log("running running");
-  // values['email_Id'] = document.getElementById("insert_email_id").value;
-  // values['GPA_Hours'] = document.getElementById("insert_GPA_HOURS").value;
-  // values['Letter_Grade'] = document.getElementById("insert_Letter_Grade").value;
-  // values['Course_Comb'] = document.getElementById("insert_Course_Comb").value;
-  // console.log(values)
-  // $.post("demo-insert/",
+  var values = {};
+  values['email_Id'] = document.getElementById("insert_email_id").value;
+  values['GPA_Hours'] = document.getElementById("insert_GPA_HOURS").value;
+  values['Letter_Grade'] = document.getElementById("insert_Letter_Grade").value;
+  values['Course_Comb'] = document.getElementById("insert_Course_Comb").value;
+  console.log(values)
+  // $.post("/demo-insert/",
   // values,
   // function(data, status){
   //   console.log("Data: " + data + "\nStatus: " + status);
