@@ -54,6 +54,7 @@ def demo_insert(request):
 
 		messages.success(request, 'Entry Successful')
 		#return info
+		info['status'] = "Success"
 		return JsonResponse(info)
 	return
 
@@ -63,11 +64,26 @@ def demo_query(request):
 		info['email_Id'] = request.POST['email_Id']
 		result = None
 		with connection.cursor() as cursor:
-			cursor.execute("Select * From Student_Course_table Where email_Id = " + info['email_Id'])
+			cursor.execute("Select * From Student_Course_Table Where email_Id = %s ;",[info['email_Id']])
 			#cursor.fetchone()
-			result = cursor.fetchone()
+			result = cursor.fetchall()
 		messages.success(request, 'Entry Successful')
-		return JsonResponse(result)
+		output = {}
+		output['results'] = []
+		result_list = list(result)
+		output['status'] = 'Failure'
+		for entry in result_list:
+			temp = {}
+			temp['email_Id'] = entry[0]
+			temp['_id'] = entry[1]
+			temp['Course_Comb'] = entry[2]
+			temp['Letter_Grade'] = entry[3]
+			temp['GPA_HOURS'] = entry[4]
+			temp['GPA_QUALITY_POINTS'] = entry[5]
+			output['results'].append(temp)
+			output['status'] = 'Success'
+		
+		return JsonResponse(output)
 	return
 
 def demo_update(request):
@@ -75,22 +91,27 @@ def demo_update(request):
 		info = {}
 		info['email_Id'] = request.POST['email_Id']
 		info['Course_Comb'] = request.POST['Course_Comb']
-		result = None
+		info['Letter_Grade'] = request.POST['Letter_Grade']
+		#info['GPA_Hours'] = float(request.POST['GPA_Hours'])
+		result = {}
+		result['status'] = 'Failure'
 		with connection.cursor() as cursor:
-			cursor.execute("Select * From Student_Course_table Where email_Id = " + 
-			info['email_Id'] + " and Course_Comb = " + info['Course_Comb'] + ";")
+			cursor.execute("Select * From Student_Course_Table Where email_Id = %s  and Course_Comb = %s ;",
+			[info['email_Id'],info['Course_Comb']])
 			temp = cursor.fetchone()
 			print("Update result:")
 			print(temp)
 			if temp == None:
 				messages.error(request, 'Invalid Entry')
 				return
-			info['GPA_QUALITY_POINTS'] = temp['GPA_Hours'] * quality_points[temp['Letter_Grade']]
+			info['GPA_QUALITY_POINTS'] = float(temp[4]) * quality_points[info['Letter_Grade']]
 			cursor.execute('''Update Student_Course_Table
 			Set Course_Comb = %s, Letter_Grade = %s, GPA_QUALITY_POINTS = %s 
 			Where _id = %s;''',
-            [info["Course_Comb"], info["Letter_Grade"], info["GPA_QUALITY_POINTS"], temp["_id"]])
-			result = cursor.fetchone()
+            [info["Course_Comb"], info["Letter_Grade"], info["GPA_QUALITY_POINTS"], temp[1]])
+			# result = cursor.fetchall()
+			# print(result)
+			result['status'] = 'Success'
 		messages.success(request, 'Update Successful')
 		return JsonResponse(result)
 	return
@@ -99,14 +120,16 @@ def demo_delete(request):
 	if request.method == 'POST':
 		info = {}
 		info['email_Id'] = request.POST['email_Id']
-		info['Course_Comb'] = request.POST['Course_comb']
-		result = None
+		info['Course_Comb'] = request.POST['Course_Comb']
+		result = {}
+		result['status'] = 'Failure'
 		with connection.cursor() as cursor:
-			cursor.execute("Delete From Student_Course_table Where email_Id = " + 
-				info['email_Id'] + " and Course_Comb = " + info['Course_Comb'] + ";")
+			cursor.execute("Delete From Student_Course_Table Where email_Id = %s  and Course_Comb = %s ;",
+				[info['email_Id'], info['Course_Comb']])
 			#cursor.fetchone()
+			result['status'] = 'Success'
 		messages.success(request, 'Delete Successful')
-		return JsonResponse(info)
+		return JsonResponse(result)
 	return
 
 def signup(request):
