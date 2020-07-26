@@ -25,28 +25,27 @@ def signup(request):
 def signup_post(request):
 	if request.method == 'POST':
 
-		name = request.POST['name']
-		email = request.POST['email']
+		fname = request.POST['fname']
+		lname = request.POST['lname']
+		email_id = request.POST['email_id']
 		password = request.POST['password']
-		number = request.POST['number']
-		gender = request.POST['gender']
 
-		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',name):
+		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',fname):
+
+			messages.error(request, 'Enter a valid Name')
+			return redirect('home-signup')
+		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',lname):
 
 			messages.error(request, 'Enter a valid Name')
 			return redirect('home-signup')
 
-		if not re.match('^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$',email):
+		if not re.match('^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$',email_id):
 
 			messages.error(request, 'Enter a valid Email')
 			return redirect('home-signup')
 
-		if not re.match('^[\d]{10,15}$',number):
 
-			messages.error(request, 'Enter a valid Number')
-			return redirect('home-signup')
-
-
+		print (fname,lname,email_id,password)
 		usr = CustomUser(name=name, email=email, password=make_password(password), usr_phone=number, usr_gender=gender)
 
 		usr.save()
