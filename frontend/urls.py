@@ -14,5 +14,5 @@ urlpatterns = [
     path('demo-query/', views.demo_query, name='demo-query-post'),
     path('demo-update/', views.demo_update, name='demo-update-post'),
     path('demo-delete/', views.demo_delete, name='demo-delete-post'),
-    path('demo-site/',views.demo_site, name='demo-site-get'),
+    path('demo_site/',views.demo_site, name='demo-site-get'),
 ]
