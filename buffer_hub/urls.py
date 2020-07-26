@@ -21,8 +21,7 @@ from temp.views import myView
 urlpatterns = [
     path('admin/', include('admin.urls')),
     path('api/', include('api.urls')),
-    path('', include('frontend.urls')),
-    path('temp/', myView)
+    path('', include('frontend.urls'))
 ]
 
 if settings.DEBUG:
