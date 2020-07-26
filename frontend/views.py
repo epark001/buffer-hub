@@ -107,6 +107,8 @@ def demo_delete(request):
 def signup(request):
 	return render(request, 'frontendTemplates/signup/index.html')
 
+def demo_site(request):
+	return render(request, 'frontendTemplates/demo_page.html')
 
 def signup_post(request):
 	if request.method == 'POST':
