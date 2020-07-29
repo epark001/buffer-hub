@@ -113,6 +113,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'bufferhub_buffer_hub',
+#         'USER': 'bufferhub_django_interface',
+#         'PASSWORD': 'bQ~dmATBo,UW',
+#         'HOST': 'SG-bufferhub-36641.servers.mongodirector.com',
+#         'PORT': '3306',
+#     }
+# }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
