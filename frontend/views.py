@@ -140,37 +140,34 @@ def demo_site(request):
 
 def signup_post(request):
 	if request.method == 'POST':
-		new_user = {}
-		new_user['fname'] = request.POST['fname']
-		new_user['lname'] = request.POST['lname']
-		new_user['email_Id'] = request.POST['email_id']
-		new_user['password'] = request.POST['password']
+		f_name = request.POST['fname']
+		l_name = request.POST['lname']
+		email_Id = request.POST['email_id']
+		password= request.POST['password']
 
-		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',new_user['fname']):
-
-			messages.error(request, 'Enter a valid Name')
-			return redirect('home-signup')
-		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',new_user['lname']):
+		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',f_name):
 
 			messages.error(request, 'Enter a valid Name')
 			return redirect('home-signup')
+		if not re.match('^[(a-z)?(A-Z)?(0-9)?_?-?\.?\,?\s]+$',l_name):
 
-		if not re.match('^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$',new_user['email_Id']):
+			messages.error(request, 'Enter a valid Name')
+			return redirect('home-signup')
+
+		if not re.match('^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$',email_Id):
 
 			messages.error(request, 'Enter a valid Email')
 			return redirect('home-signup')
 
 
-		print (new_user)
-		usr = CustomUser(first_name=new_user['fname'], last_name=new_user['lname'], username = new_user['email_Id'],password=make_password(new_user['password']), )
+		usr = CustomUser(first_name=f_name, last_name=l_name, username = email_Id,password=make_password(password), )
 
 		usr.save()
-		with connection.cursor() as cursor:
-			cursor.execute("Insert Into User_Accounts(email_Id, password, fname, lname) Values (%s, %s, %s, %s)",
-            [new_user["email_Id"], new_user["password"], new_user["fname"], new_user["lname"]])
+		# with connection.cursor() as cursor:
+		# 	cursor.execute("Insert Into User_Accounts(email_Id, password, fname, lname) Values (%s, %s, %s, %s)",
+        #     [new_user["email_Id"], new_user["password"], new_user["fname"], new_user["lname"]])
 
 		messages.success(request, 'Successfully Registered!')
-		globals.user = new_user
 		return redirect('home-login')
 
 def login(request):
@@ -192,7 +189,8 @@ def login_post(request):
 		return redirect('home-login')
 	UserModel = get_user_model()
 	try:
-		user = UserModel.objects.get(email=username)
+		user = UserModel.objects.get(username=username)
+
 
 		if user.check_password(password):
 			auth_login(request, user)
