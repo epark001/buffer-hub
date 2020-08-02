@@ -10,19 +10,18 @@
 {% if user.is_authenticated %}
 
 <section id="section-banner">
+    
     <img src='{% static "./images/orange-blue-wave.jpg" %}' alt="">
 </section>
 
-<section id="section-song">
+<section>
     <div class="songs">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-10 m-auto">
-                    <h1>Looking for Easy Classes?</h1>
-                    <h3>
-                        Check out these
-                    </h3>
-                    <a href="{% url 'player-index' %}" class="button-webPlay">Launch Web Player</a>
+                    <h1>Looking to Update Course Data?</h1>
+
+                    <a href="{% url 'player-index' %}" class="button-webPlay">Add New Courses</a>
                 </div>
             </div>
 
