@@ -31,7 +31,7 @@ quality_points = {
 }
 
 def index(request):
-	
+
 	data = Homepage.objects.all()
 
 	return render(request, 'frontendTemplates/home/index.html', {'data':data})
@@ -82,7 +82,7 @@ def demo_query(request):
 			temp['GPA_QUALITY_POINTS'] = entry[5]
 			output['results'].append(temp)
 			output['status'] = 'Success'
-		
+
 		return JsonResponse(output)
 	return
 
@@ -106,7 +106,7 @@ def demo_update(request):
 				return
 			info['GPA_QUALITY_POINTS'] = float(temp[4]) * quality_points[info['Letter_Grade']]
 			cursor.execute('''Update Student_Course_Table
-			Set Course_Comb = %s, Letter_Grade = %s, GPA_QUALITY_POINTS = %s 
+			Set Course_Comb = %s, Letter_Grade = %s, GPA_QUALITY_POINTS = %s
 			Where _id = %s;''',
             [info["Course_Comb"], info["Letter_Grade"], info["GPA_QUALITY_POINTS"], temp[1]])
 			# result = cursor.fetchall()
@@ -162,9 +162,9 @@ def signup_post(request):
 
 
 		print (new_user)
-		# usr = CustomUser(name=name, email=email, password=make_password(password), usr_phone=number, usr_gender=gender)
+		usr = CustomUser(name=name, email=email, password=make_password(password))
 
-		# usr.save()
+		usr.save()
 		with connection.cursor() as cursor:
 			cursor.execute("Insert Into User_Accounts(email_Id, password, fname, lname) Values (%s, %s, %s, %s)",
             [new_user["email_Id"], new_user["password"], new_user["fname"], new_user["lname"]])
