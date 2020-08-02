@@ -162,7 +162,7 @@ def signup_post(request):
 
 
 		print (new_user)
-		usr = CustomUser(name=name, email=email, password=make_password(password))
+		usr = CustomUser(first_name=new_user['fname'], last_name=new_user['lname'], username = new_user['email_Id'],password=make_password(new_user['password']), )
 
 		usr.save()
 		with connection.cursor() as cursor:
@@ -181,8 +181,8 @@ def login_post(request):
 	user = {}
 	user['username'] = request.POST['email']
 	user['password'] = request.POST['password']
-	print(globals.user)
-
+	username= request.POST['email']
+	password = request.POST['password']
 	if not re.match("^[\w\.\+\-]+\@[\w]+\.[a-z]{2,3}$", user['username']):
 		messages.error(request, 'Enter a valid Email')
 		return redirect('home-login')
@@ -190,19 +190,30 @@ def login_post(request):
 	if len(user['password']) < 3:
 		messages.error(request, 'Provide a Valid Password')
 		return redirect('home-login')
+	UserModel = get_user_model()
+	try:
+		user = UserModel.objects.get(email=username)
 
-	with connection.cursor() as cursor:
-		#cursor.execute("Select * From User_Accounts Where email_Id = "+user['username']+"and password = "+user['password'])
-		cursor.execute("Select * from User_Accounts where email_Id = %s and password = %s",
-                        [user["username"], user["password"]]
-        )
-		result = cursor.fetchone()
-		print(result)
-		if result == None:
-			messages.error(request, 'Invalid Login!')
+		if user.check_password(password):
+			auth_login(request, user)
+			return redirect('home-index')
+		else:
 			return redirect('home-login')
-		#auth_login(request, user)
-		return redirect('home-index')
+	except UserModel.DoesNotExist:
+		messages.error(request, 'Invalid Email!')
+		return redirect('home-login')
+	# with connection.cursor() as cursor:
+	# 	#cursor.execute("Select * From User_Accounts Where email_Id = "+user['username']+"and password = "+user['password'])
+	# 	cursor.execute("Select * from User_Accounts where email_Id = %s and password = %s",
+    #                     [user["username"], user["password"]]
+    #     )
+	# 	result = cursor.fetchone()
+	# 	print(result)
+	# 	if result == None:
+	# 		messages.error(request, 'Invalid Login!')
+	# 		return redirect('home-login')
+	# 	#auth_login(request, user)
+	# 	return redirect('home-index')
 
 	# UserModel = get_user_model()
 	# try:

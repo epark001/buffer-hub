@@ -1,11 +1,11 @@
     <header id="header-index" class="header">
         <nav class="navbar navbar-expand">
             <div class="container">
-                <a class="navbar-brand" href="#">buffer_hub</a>
+                <a class="navbar-brand" href="{% url 'home-index' %}">buffer_hub</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{% url 'home-index' %}">Home</a>
                         </li>
                         
                         {% if user.is_authenticated %}

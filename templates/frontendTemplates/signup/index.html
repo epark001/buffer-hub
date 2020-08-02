@@ -21,7 +21,7 @@
 
 	<section id="logo-main">
 		<div class="row text-center">
-			<div class="col-12 m-auto" style="padding: 20px; border-bottom: 2px solid #e5e8e9;"><a href="./">
+			<div class="col-12 m-auto" style="padding: 20px; border-bottom: 2px solid #e5e8e9;"><a href="{% url 'home-index' %}">
 				<img width="200" height="60" src='{% static "./images/logo.png" %}' alt="" style="background: black;"></a>
 			</div>
 		</div>
@@ -72,7 +72,7 @@
 				            </div>
 
 				            <div>
-				            	<p style="color: black;">Already have an account ? <a href="{% url 'home-login' %}"><span style="color: green;">Log In</span></a></p>
+				            	<p style="color: black;">Already have an account ? <a href="{% url 'home-login' %}"><span style="color: navy;">Log In</span></a></p>
 				            </div>
 
 	                </form>
