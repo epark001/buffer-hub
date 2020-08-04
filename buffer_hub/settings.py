@@ -99,13 +99,24 @@ WSGI_APPLICATION = 'buffer_hub.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'buffer_hub',
+#         'USER': 'djangoInterface',
+#         'PASSWORD': 'Django123!',
+#         'HOST': 'SG-bufferhub-36641.servers.mongodirector.com',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'buffer_hub',
-        'USER': 'djangoInterface',
-        'PASSWORD': 'Django123!',
-        'HOST': 'SG-bufferhub-36641.servers.mongodirector.com',
+        'NAME': 'Buffer_Hub',
+        'USER': 'admin',
+        'PASSWORD': 'admin123!',
+        'HOST': 'buffer-hub-3.cuhxc5dzhybj.us-east-2.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
