@@ -59,7 +59,7 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #9f89c5;
+    background: #13294b;
     color: #fff;
     transition: all 0.3s;
 }
@@ -70,7 +70,7 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #9f89c5;
+    background: #13294b;
 }
 
 #sidebar ul.components {
@@ -97,7 +97,7 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #9f89c5;
+    background: #13294b;
 }
 
 a[data-toggle="collapse"] {
@@ -105,7 +105,7 @@ a[data-toggle="collapse"] {
 }
 
 .ham-btn{
-	background: #9f89c5;
+	background: #13294b;
 	color: #ddd;
 }
 
@@ -120,7 +120,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #9f89c5;
+    background: #13294b;
 }
 
 ul.CTAs {
@@ -142,7 +142,7 @@ a.download {
 
 a.article,
 a.article:hover {
-    background: #9f89c5 !important;
+    background: #13294b !important;
     color: #fff !important;
 }
 
@@ -168,17 +168,6 @@ a.article:hover {
 
 .section-buttons{
     margin-top: 20px;
-}
-
-.upload-song{
-    padding: 10px;
-}
-
-.upload-song-div{
-    padding: 10px;
-    margin: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
 }
 
 .hide-gif{

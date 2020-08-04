@@ -42,28 +42,24 @@ INSTALLED_APPS = [
     'admin',
     'admin.login',
     'admin.dashboard',
-    'admin.genre',
-    'admin.mood',
-    'admin.artist',
-    'admin.song',
     'admin.user',
-    'admin.favorite',
     'admin.homepage',
     'api',
     'rest_framework',
     'temp'
 ]
 
-AUTH_USER_MODEL = "user.CustomUser" 
+AUTH_USER_MODEL = "user.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_globals.middleware.Global'
 ]
 
 ROOT_URLCONF = 'buffer_hub.urls'
@@ -112,25 +108,34 @@ DATABASES = {
     }
 }
 
-#-------------------------------------------------------------------------------------------------
-import pymysql
-import time
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'bufferhub_buffer_hub',
+#         'USER': 'bufferhub_django_interface',
+#         'PASSWORD': 'bQ~dmATBo,UW',
+#         'HOST': 'SG-bufferhub-36641.servers.mongodirector.com',
+#         'PORT': '3306',
+#     }
+# }
 
-mydb = pymysql.connect(host=DATABASES['default']['HOST'],
-                           port=3306,
-                           db=DATABASES['default']['NAME'],
-                           user=DATABASES['default']['USER'],
-                           password=DATABASES['default']['PASSWORD'])
-cursor = mydb.cursor()
+# import pymysql
+# import time
 
-temp = 'INSERT INTO Testing(_id) VALUES(\'' + time.ctime(time.time()) + '\')'
-print(temp)
-cursor.execute(temp)
+# mydb = pymysql.connect(host=DATABASES['default']['HOST'],
+#                            port=3306,
+#                            db=DATABASES['default']['NAME'],
+#                            user=DATABASES['default']['USER'],
+#                            password=DATABASES['default']['PASSWORD'])
+# cursor = mydb.cursor()
+
+# temp = 'INSERT INTO Testing(_id) VALUES(\'' + time.ctime(time.time()) + '\')'
+# print(temp)
+# cursor.execute(temp)
  
-mydb.commit()
-cursor.close()
+# mydb.commit()
+# cursor.close()
 
-#-------------------------------------------------------------------------------------------------
 
 
 # Password validation
@@ -157,7 +162,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Prompt</h2>
+
+              <div class="top-row">
+                <div class="field-wrap">
+                  <label for="Letter_Grade">
+                    Letter_Grade<span class="req">*</span>
+                  </label>
+                  <input type="text" id="Letter_Grade" name="Letter_Grade" required autocomplete="off" />
+                </div>
+
+                <div class="field-wrap">
+                  <label for="GPA_HOURS">
+                    GPA_HOURS<span class="req">*</span>
+                  </label>
+                  <input type="text" id="GPA_HOURS" name="GPA_HOURS" required autocomplete="off"/>
+                </div>
+              </div>
+
+              <div class="field-wrap">
+                <label for="email_id">
+                  email_id<span class="req">*</span>
+                </label>
+                <input type="email" id="email_id" name="email_id" required autocomplete="off"/>
+              </div>
+
+              <div class="field-wrap">
+                <label for="Course_Comb">
+                  Course_Comb<span class="req">*</span>
+                </label>
+                <input type="text" id="Course_Comb" name="Course_Comb" required autocomplete="off"/>
+              </div>
+<button onclick="demoInsert()">Insert</button>
+<button onclick="demoQuery()">Query</button>
+<button onclick="demoUpdate()">Update</button>
+<button onclick="demoDelete()">Delete</button>
+
+<div style="overflow: auto; width:1000px; height:1000px;" id="output"></div>
+
+<script>
+  function demoInsert() {
+  var values = {};
+  values['email_Id'] = document.getElementById("email_id").value;
+  values['GPA_Hours'] = document.getElementById("GPA_HOURS").value;
+  values['Letter_Grade'] = document.getElementById("Letter_Grade").value;
+  values['Course_Comb'] = document.getElementById("Course_Comb").value;
+  console.log(values)
+  $.post("/demo-insert/",
+  values,
+  function(data, status){
+    console.log(typeof(data))
+    console.log(JSON.stringify(data))
+    document.getElementById('output').innerHTML = JSON.stringify(data);
+  });
+}
+function demoQuery() {
+  var values = {};
+  values['email_Id'] = document.getElementById("email_id").value;
+  values['Course_Comb'] = document.getElementById("Course_Comb").value;
+  console.log(values)
+  $.post("/demo-query/",
+  values,
+  function(data, status){
+    document.getElementById('output').innerHTML = JSON.stringify(data);
+  });
+}
+function demoUpdate() {
+  var values = {};
+  values['email_Id'] = document.getElementById("email_id").value;
+  values['Letter_Grade'] = document.getElementById("Letter_Grade").value;
+  values['Course_Comb'] = document.getElementById("Course_Comb").value;
+  console.log(values)
+  $.post("/demo-update/",
+  values,
+  function(data, status){
+    document.getElementById('output').innerHTML = JSON.stringify(data);
+  });
+}
+function demoDelete() {
+  var values = {};
+  values['email_Id'] = document.getElementById("email_id").value;
+  values['Course_Comb'] = document.getElementById("Course_Comb").value;
+  console.log(values)
+  $.post("/demo-delete/",
+  values,
+  function(data, status){
+    document.getElementById('output').innerHTML = JSON.stringify(data);
+  });
+}
+</script>
+
+<p id="demo"></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+</html>

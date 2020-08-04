@@ -141,29 +141,6 @@ def update_pass(request):
 			messages.error(request, 'Log In First!')
 			return redirect('home-login')
 
-
-@login_required(login_url='home-login')
-def privacy(request):
-	usr = CustomUser.objects.filter(pk=request.user.id)
-
-	if not usr:
-		messages.error(request, 'Log In First!')
-		return redirect('home-login')
-	else:
-		usr = usr.get()
-	return render(request, 'frontendTemplates/account/privacy.html', {'usr':usr})
-
-@login_required(login_url='home-login')
-def subs(request):
-	usr = CustomUser.objects.filter(pk=request.user.id)
-
-	if not usr:
-		messages.error(request, 'Log In First!')
-		return redirect('home-login')
-	else:
-		usr = usr.get()
-	return render(request, 'frontendTemplates/account/subscription.html', {'usr':usr})
-
 @login_required(login_url='home-login')
 def profile_pic(request):
 	if request.is_ajax():

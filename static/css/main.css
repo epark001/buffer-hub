@@ -116,8 +116,6 @@ select {
   font-family: "Arial";
 }
 
-/*||  ======================  Main Css Starts  ======================  ||*/
-/*||  ----  Custom Classes Starts  ----  ||*/
 .text-blue-light {
   color: #13294b  !important;
 }
@@ -166,7 +164,6 @@ select {
   background-color: transparent !important;
 }
 
-/*||  ----  Custom Classes Ends  ----  ||*/
 #root {
   position: fixed;
   display: flex;
@@ -358,84 +355,6 @@ select {
   opacity: 1;
 }
 
-.music {
-  max-width: 1102px;
-  margin: 0 auto;
-  width: 100%;
-  margin-bottom: 3rem;
-}
-.music-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.music-head h1 {
-  margin-left: 6px;
-}
-.music-row {
-  display: flex;
-}
-.music-col {
-  position: relative;
-  padding: 0 8px;
-  flex: 1 1 auto;
-  display: block;
-  max-width: 180px;
-  margin: 1rem 0;
-}
-.music-col h3 {
-  font-size: 1rem;
-  font-weight: 400;
-  text-align: center;
-  letter-spacing: 1px;
-  margin-bottom: 0;
-  margin-top: 0.75rem;
-}
-.music-col h5 {
-  font-family: inherit;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  text-align: center;
-  margin-top: 0.5rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-.music-col:hover .music-playBtn {
-  opacity: 1;
-  visibility: visible;
-}
-.music-img {
-  max-width: 100%;
-  height: 150px;
-  overflow: hidden;
-  position: relative;
-}
-.music-img .music-playBtn {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 3, 16, 0.8);
-  visibility: hidden;
-  opacity: 0;
-}
-.music-img .music-playBtn > img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50px;
-  height: 50px;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-.music-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 a.viewMore {
   font-size: 0.875rem;
@@ -448,272 +367,6 @@ a.viewMore:hover {
   color: #fff;
 }
 
-#player-main.player {
-  padding: 0.75rem 1.5rem;
-  background: #212325;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.player-song {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.player-song-img {
-  width: 70px;
-  height: 70px;
-  overflow: hidden;
-}
-.player-song-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.player-song-name {
-  padding: 0.75rem;
-}
-.player-song-name a {
-  display: block;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.7);
-}
-.player-song-name a:hover {
-  color: #fff;
-}
-.player-song-name a:hover h3 {
-  color: #13294b ;
-}
-.player-song-name h3 {
-  font-size: 1.125rem;
-  margin-bottom: 0.25rem;
-  letter-spacing: 1px;
-  color: #13294b ;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-}
-.player-controls {
-  display: flex;
-  flex-direction: row;
-}
-.player-controls-duration {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-.player-controls-duration span {
-  color: white;
-  font-size: 12px;
-  min-width: 70px;
-  letter-spacing: 1px;
-  text-align: center;
-}
-.player-controls-duration span#startTime {
-  color: #fff;
-}
-.player-controls-btn {
-  width: 40px;
-  height: 40px;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0.25rem 1rem;
-}
-.player-controls-btn.disabled {
-  color: rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  font-size: 12px;
-}
-.player-controls-btn.disabled:hover {
-  color: rgba(255, 255, 255, 0.5);
-}
-.player-controls-btn:hover {
-  color: white;
-}
-.player-controls-btn#play {
-  background: url(../images/play.svg);
-  background-size: contain;
-}
-.player-controls-btn#play.pause {
-  background: url(../images/pause.svg);
-}
-.player-controls-btn#prev:after {
-  content: "";
-  font-family: "Font Awesome 5 Free";
-  font-size: inherit;
-  font-weight: 900;
-}
-.player-controls-btn#next:after {
-  content: "";
-  font-family: "Font Awesome 5 Free";
-  font-size: inherit;
-  font-weight: 900;
-}
-.player-controls-btn#repeat:after {
-  content: "";
-  font-family: "Font Awesome 5 Free";
-  font-size: inherit;
-  font-weight: 900;
-}
-.player-controls-btn#repeat.looped {
-  color: #13294b ;
-}
-.player-controls-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-items: center;
-  flex: 1 1;
-}
-
-#volume {
-  position: relative;
-  margin: 0 0.25rem 1rem;
-}
-#volume-icon {
-  margin: 0;
-}
-#volume-icon:after {
-  content: "";
-  font-family: "Font Awesome 5 Free";
-  font-size: inherit;
-  font-weight: 900;
-}
-#volume-icon.muted:after {
-  content: "";
-  font-family: "Font Awesome 5 Free";
-  font-size: inherit;
-  font-weight: 900;
-}
-#volume-range {
-  background: #555;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-#volume-range-main {
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  -webkit-transform: translate(0px, -50%);
-  -moz-transform: translate(0px, -50%);
-  -ms-transform: translate(0px, -50%);
-  -o-transform: translate(0px, -50%);
-  transform: translate(0px, -50%);
-  cursor: pointer;
-  height: 24px;
-  width: 100px;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-}
-#volume-range-bar {
-  height: 4px;
-  width: 0;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  background: #13294b ;
-  border-radius: 4px;
-}
-#volume-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  position: absolute;
-  top: 50%;
-  border-radius: 50%;
-  margin-top: -6px;
-}
-
-#duration {
-  position: relative;
-  margin: 0 0.25rem 1rem;
-}
-#duration:hover #duration-range-main {
-  width: 150px;
-}
-#duration-range {
-  background: #555;
-  height: 2px;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  border-radius: 2px;
-}
-#duration-range-main {
-  cursor: pointer;
-  height: 24px;
-  width: 400px;
-  display: inline-block;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  position: relative;
-  margin: 0 1rem;
-}
-#duration-range-main:hover #duration-range-thumb {
-  opacity: 1;
-}
-#duration-range-bar {
-  height: 4px;
-  width: 0;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  background: #13294b ;
-  border-radius: 4px;
-}
-#duration-range-thumb {
-  width: 12px;
-  height: 12px;
-  background: #ffffff;
-  position: absolute;
-  top: 50%;
-  border-radius: 50%;
-  margin-top: -6px;
-  opacity: 0;
-}
-
-.addToFav {
-  margin-left: 0.75rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-.addToFav:before {
-  content: "";
-  color: inherit;
-  font-family: "Font Awesome 5 Free";
-  font-size: inherit;
-  font-weight: 400;
-}
-.addToFav:hover {
-  color: #fff;
-}
-.addToFav.inFav:before {
-  font-weight: 900;
-  color: #13294b ;
-}
-
-/*||  ======================  Account Starts  ======================  ||*/
 .header .navbar {
   padding: 1rem;
 }
@@ -974,7 +627,7 @@ a.viewMore:hover {
 }
 
 .dropdown-menu {
-  background: linear-gradient(45deg, #e4faee 49.7%, #fff 50%);
+  background: linear-gradient(45deg, #f4aa9a 49.7%, #fff 50%);
   border-radius: 2px;
   border: 0;
 }
@@ -989,93 +642,6 @@ a.viewMore:hover {
 
 .cstm-mar {
   margin-top: 30px;
-}
-
-.button-webPlay {
-  text-transform: uppercase;
-  font-size: 1rem;
-  color: #212325;
-  font-weight: 500;
-  min-width: 300px;
-  padding: 0.75rem 2rem;
-  border: 2px solid #212325;
-  border-radius: 100px;
-  font-family: "Oswald", sans-serif;
-  letter-spacing: 3px;
-}
-.button-webPlay:hover {
-  background: #212325;
-  color: #fff;
-}
-
-.songs {
-  padding: 4rem 0;
-  text-align: center;
-}
-.songs .mb-5 {
-  margin-bottom: 5rem !important;
-}
-.songs h1 {
-  color: #000310;
-}
-.songs h3 {
-  color: #000310;
-  font-size: 1.25rem;
-  font-family: "Open Sans", sans-serif;
-}
-.songs-col {
-  height: 350px;
-  position: relative;
-}
-.songs-col img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.songs-col:hover .songs-col-overlay {
-  visibility: visible;
-  opacity: 1;
-}
-.songs-col-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 1;
-  visibility: hidden;
-  opacity: 0;
-}
-.songs-col-caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: auto;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-  display: block;
-  padding: 15px;
-}
-.songs-col-caption h2 {
-  font-weight: 600;
-}
-.songs-col-caption p {
-  font-size: 1.125rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #a1a1a1;
-}
-.songs-col-caption p.playLink {
-  color: #13294b ;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 1rem;
 }
 
 #header-index {
@@ -1236,41 +802,6 @@ a.viewMore:hover {
   padding: 1.5rem;
 }
 
-.playerSearch {
-  position: relative;
-}
-.playerSearch-submit, .playerSearch-input {
-  height: 80px;
-}
-.playerSearch-input {
-  width: 100%;
-  display: block;
-  font-size: 1.75rem;
-  padding: 1rem 2rem;
-  background: rgba(0, 3, 16, 0.5);
-  font-weight: 700;
-}
-.playerSearch-submit {
-  position: absolute;
-  top: 0;
-  background: #212325;
-  right: 0;
-  width: 80px;
-  color: #13294b ;
-}
-.playerSearch-submit i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  height: auto;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  font-size: 1.75rem;
-}
 
 @media only screen and (max-width: 1024px) {
   body {
@@ -1283,10 +814,3 @@ a.viewMore:hover {
     overflow-x: scroll;
   }
 }
-
-
-
-/*||  ======================  Account Ends  ======================  ||*/
-/*||  ======================  Main Css Ends  ======================  ||*/
-
-/*# sourceMappingURL=main.css.map */

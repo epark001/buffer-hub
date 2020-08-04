@@ -20,7 +20,7 @@
 
 	<section id="logo-main">
 		<div class="row text-center">
-			<div class="col-12 m-auto" style="padding: 20px; border-bottom: 2px solid #e5e8e9;"><a href="./">
+			<div class="col-12 m-auto" style="padding: 20px; border-bottom: 2px solid #e5e8e9;"><a href="{% url 'home-index' %}">
 				<img width="200" height="60" src='{% static "./images/logo.png" %}' alt="" style="background: black;"></a>
 			</div>
 		</div>
@@ -59,14 +59,14 @@
 
 				            <div style="padding-bottom: 40px; border-bottom: 2px solid #e2e3e8;">
 
-				            	<p style="color: black; padding-top: 30px;"><strong>Don't have an account?</strong></p>
+				            	<p style="color: black; padding-top: 30px;"><strong>Join Us!</strong></p>
 
-				            <a href="{% url 'home-signup' %}" class="button-webPlay" style="padding: 0.625rem 2rem; width: 100%">Sign Up For buffer_hub</a>
+				            <a href="{% url 'home-signup' %}" style="padding: 0.625rem 2rem; width: 100%">Sign Up For buffer_hub</a>
 
 				            </div>
 
 				            <div style="padding-top: 20px;">
-				            	<small style="color: #d3c8c6; font-size: 13px;"><strong>If you click "Log In", you agree to buffer_hub's Terms & Conditions and Privacy Policy.</strong></small>
+				            	<small style="color:black; font-size: 13px;"><strong>We strive to provide the best product for people</strong></small>
 				            </div>
 
 	                </form>

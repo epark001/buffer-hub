@@ -1,15 +1,13 @@
     <header id="header-index" class="header">
         <nav class="navbar navbar-expand">
             <div class="container">
-                <a class="navbar-brand" href="#">buffer_hub</a>
+                <a class="navbar-brand" href="{% url 'home-index' %}">buffer_hub</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="{% url 'home-index' %}">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
+                        
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{ user.name }}</a>
@@ -24,6 +22,9 @@
                             </div>
                         </li>
                         {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'demo-site-get' %}">Demo</a>
+                        </li>
 						<li class="nav-item">
                             <a class="nav-link" href="{% url 'home-login' %}">Log In</a>
                         </li>

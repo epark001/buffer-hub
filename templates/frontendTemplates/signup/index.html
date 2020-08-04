@@ -21,7 +21,7 @@
 
 	<section id="logo-main">
 		<div class="row text-center">
-			<div class="col-12 m-auto" style="padding: 20px; border-bottom: 2px solid #e5e8e9;"><a href="./">
+			<div class="col-12 m-auto" style="padding: 20px; border-bottom: 2px solid #e5e8e9;"><a href="{% url 'home-index' %}">
 				<img width="200" height="60" src='{% static "./images/logo.png" %}' alt="" style="background: black;"></a>
 			</div>
 		</div>
@@ -45,13 +45,18 @@
 							{% csrf_token %}
 							<div class="form-group">
 	                            <div class="form-input-bg">
-	                                <input type="name" name="name" class="form-control" id="inputName" placeholder="Name">
+	                                <input type="name" name="fname" class="form-control" id="inputName" placeholder="First Name">
+	                            </div>
+							</div>
+							<div class="form-group">
+	                            <div class="form-input-bg">
+	                                <input type="name" name="lname" class="form-control" id="inputName" placeholder="Last Name">
 	                            </div>
 	                        </div>
 						
 	                        <div class="form-group">
 	                            <div class="form-input-bg">
-	                                <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email address">
+	                                <input type="email" name="email_id" class="form-control" id="inputEmail4" placeholder="Email address">
 	                            </div>
 	                        </div>
 
@@ -61,33 +66,13 @@
 	                            </div>
 	                        </div>
 
-	                        <div class="form-group">
-	                            <div class="form-input-bg">
-	                                <input type="number" name="number" class="form-control" id="inputNumber44" placeholder="Number">
-	                            </div>
-	                        </div>
 
-	                        <div class="form-group text-left">
-	                            <label for="gender" style="color: black;">Gender</label>
-	                            <div class="form-input-bg">
-	                                <select id="gender" class="form-control" name="gender">
-	                                    <option>-- Select --</option>
-	                                    <option value="Male">Male</option>
-	                                    <option value="Female">Female</option>
-	                                    <option value="Not Listed">Not Listed</option>
-	                                </select>
-	                            </div>
-	                        </div>
-
-				            <div style="padding-top: 20px;">
-				            	<small style="color: black; font-size: 12px;">By clicking on Sign up, you agree to buffer_hub's Terms and Conditions of Use.<br><br>To learn more about how buffer_hub collects, uses, shares and protects your personal data please read buffer_hub's Privacy Policy.</small>
-				            </div>
 				            <div class="guest-content" style="padding: 30px 0px;">
 				                <a href="#" onclick="document.getElementById('signup-form').submit();" style="width: 70%">Sign Up</a>
 				            </div>
 
 				            <div>
-				            	<p style="color: black;">Already have an account ? <a href="{% url 'home-login' %}"><span style="color: green;">Log In</span></a></p>
+				            	<p style="color: black;">Already have an account ? <a href="{% url 'home-login' %}"><span style="color: navy;">Log In</span></a></p>
 				            </div>
 
 	                </form>

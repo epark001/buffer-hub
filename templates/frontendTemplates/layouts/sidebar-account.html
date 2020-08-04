@@ -1,16 +1,6 @@
 <div class="col-3">
                     <div class="section-menu">
-                        <div class="section-menu-user">
-                            <div class="section-menu-user-img">
-                                <!-- <img src="./images/user.svg" alt="user"> -->
-                                <img src='{{usr.profile_pic.url}}' alt="user">
-                                <label for="addUserImg" id="addUserImg-label">
-                                    <i class="fas fa-user-edit"></i>
-                                </label>
-                                <input type="file" name="addUserImg" id="addUserImg">
-                            </div>
 
-                        </div>
                         <ul class="section-menu-nav">
                             <li class="section-menu-nav-item">
                                 <a href="{% url 'account-index' %}" class="d-block section-menu-nav-link">
@@ -38,20 +28,19 @@
                             </li>
 
                             <li class="section-menu-nav-item">
-                                <a href="{% url 'account-subs' %}" class="d-block section-menu-nav-link">
+                                <a class="d-block section-menu-nav-link">
                                     <span>
                                         <i class="far fa-credit-card"></i>
                                     </span>
-                                    Subscriptions
+                                    Update/Delete Courses
                                 </a>
                             </li>
-
                             <li class="section-menu-nav-item">
-                                <a href="{% url 'account-privacy' %}" class="d-block section-menu-nav-link">
+                                <a class="d-block section-menu-nav-link">
                                     <span>
-                                        <i class="fas fa-user-lock"></i>
+                                        <i class="far fa-credit-card"></i>
                                     </span>
-                                    Privacy settings
+                                    Update Additional Student Information
                                 </a>
                             </li>
                         </ul>
