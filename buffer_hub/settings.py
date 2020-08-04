@@ -42,12 +42,7 @@ INSTALLED_APPS = [
     'admin',
     'admin.login',
     'admin.dashboard',
-    'admin.genre',
-    'admin.mood',
-    'admin.artist',
-    'admin.song',
     'admin.user',
-    'admin.favorite',
     'admin.homepage',
     'api',
     'rest_framework',
@@ -150,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 

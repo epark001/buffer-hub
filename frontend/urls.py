@@ -9,7 +9,6 @@ urlpatterns = [
     path('login/post', views.login_post, name='home-login-post'),
     path('logout/', views.logout_post, name='home-logout'),
     path('account/', include('frontend.account.urls')),
-    path('webplayer/', include('frontend.webplayer.urls')),
     path('demo-insert/', views.demo_insert, name='demo-signup-post'),
     path('demo-query/', views.demo_query, name='demo-query-post'),
     path('demo-update/', views.demo_update, name='demo-update-post'),

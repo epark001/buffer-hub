@@ -40,7 +40,6 @@
                                 <td>{{ row.username }}</td>
                                 <td>{{ row.email }}</td>
                                 <td>{{ row.usr_gender }}</td>
-                                <td><a href="{% url 'favorite-details' id=row.id %}"><span class="badge badge-danger">Favorites</span></a>
                                 &nbsp;&nbsp;
                                 <a href="{% url 'user-details' id=row.id %}"><span class="badge badge-info">More...</span></a></td>
                                 </tr>
