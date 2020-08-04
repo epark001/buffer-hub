@@ -6,6 +6,8 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as auth_login
 from admin.user.models import CustomUser
+from admin.gen_ed.models import GenEd
+
 import re
 import json
 # Create your views here.
@@ -39,6 +41,29 @@ def edit(request):
 
 	return render(request, 'frontendTemplates/account/edit.html', {'usr':usr})
 
+
+@login_required(login_url='home-login')
+def sqlsearch(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/sqlsearch.html', {'usr':usr})
+
+
+@login_required(login_url='home-login')
+def searchRequest(request):
+	if request.method == 'POST':
+		gen_ed = request.POST['gened']
+		str = """ SELECT * FROM Gen_ED WHERE ACP='ACP' """
+		data = GenEd.objects.raw(str)
+		return render(request, 'frontendTemplates/account/sqlsearchcomplete.html', {'data':data})
+	return redirect('home-login')
 
 @login_required(login_url='home-login')
 def update(request):

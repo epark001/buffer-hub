@@ -1,0 +1,57 @@
+
+{% extends "frontendTemplates/layouts/frame-account.html" %}
+
+{% block title %} buffer_hub | Account Edit Profile {% endblock %}
+
+{% block main-content %}
+
+
+
+<div class="col-9">
+    <div class="section-content">
+        <h3>Search a Gen-Ed</h3>
+
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+        <form action="{% url 'account-sql-search-look' %}" id="editForm" class="form-account form" method="post">
+
+        	{% csrf_token %}
+
+
+
+
+
+            <div class="form-group">
+                <label for="inputState__">GenEd</label>
+                <div class="form-input-bg">
+                        <select id="gened" class="form-control" name="gened">
+                                <option>-- Select --</option>
+                                <option value="acp">acp</option>
+                                <option value="cs">cs</option>
+                                <option value="hum">hum</option>
+                                <option value="nat">nat</option>
+                                <option value="qr">qr</option>
+                                <option value="sbs">sbs</option>
+
+                            </select>
+                </div>
+            </div>
+
+            <div class="text-right">
+                <button type="submit" class="button">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
