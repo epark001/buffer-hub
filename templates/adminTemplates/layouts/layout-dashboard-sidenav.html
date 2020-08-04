@@ -24,7 +24,28 @@
                         </li>
                     </ul>
                 </li>
-
+				<li>
+                    <a href="#gpa_tableSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> GPA_Table</a>
+                    <ul class="collapse list-unstyled" id="gpa_tableSubmenu">
+                        <li>
+                            <a href="{% url 'gpa_table-index' %}">View Index</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'gpa_table-add' %}">Add Value</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#gen_edSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> Gen_Ed</a>
+                    <ul class="collapse list-unstyled" id="gen_edSubmenu">
+                        <li>
+                            <a href="{% url 'gen_ed-index' %}">View Index</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'gen_ed-add' %}">Add Value</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#" onclick="triggerModal();"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a>
                 </li>

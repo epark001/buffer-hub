@@ -1,0 +1,144 @@
+{% extends "adminTemplates/layouts/layout-dashboard.html" %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block main-section %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="main-section">
+
+      {% if messages %}
+      <div class="alert alert-danger" role="alert"> {% for message in messages %} <small{% if message.tags %} class="error1 {{ message.tags }}"{% endif %}>{{ message }}</small> {% endfor %} </div>
+      {% endif %}
+      <form action="{% url 'gpa_table-save' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label for="gpa_table-name">course_comb</label>
+              <input name="course_comb" type="text" class="form-control" id="course_comb" placeholder="Add course_comb">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label >Subject</label>
+              <input name="subject" type="text" class="form-control" id="subject" placeholder="Add Subject">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label >Number</label>
+              <input name="number" type="text" class="form-control" id="number" placeholder="Add Number">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label >Course_title</label>
+              <input name="course_title" type="text" class="form-control" id="course_title" placeholder="Add Course_title">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label >a_plus</label>
+              <input name="a_plus" type="text" class="form-control" id="a_plus" placeholder="Add a_plus">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label >a_standard</label>
+              <input name="a_standard" type="text" class="form-control" id="a_standard" placeholder="Add a_standard">
+            </div>
+          </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >a_minus</label>
+            <input name="a_minus" type="text" class="form-control" id="a_minus" placeholder="Add a_minus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >b_plus</label>
+            <input name="b_plus" type="text" class="form-control" id="b_plus" placeholder="Add b_plus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >b_standard</label>
+            <input name="b_standard" type="text" class="form-control" id="b_standard" placeholder="Add b_standard">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >b_minus</label>
+            <input name="b_minus" type="text" class="form-control" id="b_minus" placeholder="Add b_minus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >c_plus</label>
+            <input name="c_plus" type="text" class="form-control" id="c_plus" placeholder="Add c_plus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >c_standard</label>
+            <input name="c_standard" type="text" class="form-control" id="c_standard" placeholder="Add c_standard">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >c_minus</label>
+            <input name="c_minus" type="text" class="form-control" id="c_minus" placeholder="Add c_minus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >d_plus</label>
+            <input name="d_plus" type="text" class="form-control" id="d_plus" placeholder="Add d_plus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >d_standard</label>
+            <input name="d_standard" type="text" class="form-control" id="d_standard" placeholder="Add d_standard">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >d_minus</label>
+            <input name="d_minus" type="text" class="form-control" id="d_minus" placeholder="Add d_minus">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >f</label>
+            <input name="f" type="text" class="form-control" id="f" placeholder="Add f">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >average_grade</label>
+            <input name="average_grade" type="text" class="form-control" id="average_grade" placeholder="Add average_grade">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group text-left">
+            <label >primary_instructor</label>
+            <input name="primary_instructor" type="text" class="form-control" id="primary_instructor" placeholder="Add primary_instructor">
+          </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col text-right">
+              <button type="submit" class="btn btn-outline-success">Submit</button>
+              <button onclick="location.href='{% url 'gpa_table-index' %}'" type="button" class="btn btn-outline-secondary">Dismiss</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
