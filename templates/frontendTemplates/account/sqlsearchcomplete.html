@@ -41,10 +41,10 @@
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
-                                <th scope="col">SL No</th>
-                                <th scope="col">course_comb</th>
-                                <th scope="col">course_title</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Entry Number</th>
+                                <th scope="col">Course Number</th>
+                                <th scope="col">Course Title</th>
+                                <th scope="col">Average GPA</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,7 +53,7 @@
                                 <td bgcolor="#13294b">{{ forloop.counter }}</td>
                                 <td bgcolor="#E84A27">{{ row.course_comb }}</td>
                                 <td bgcolor="#13294b">{{ row.course_title }}</td>
-                                <td bgcolor="#E84A27"></td>
+                                <td bgcolor="#E84A27">{{ row.average_grade }}</td>
 
                                 </tr>
 
