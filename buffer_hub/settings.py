@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'buffer_hub',
     'admin',
     'admin.login',
+    'admin.gpa_table',
     'admin.dashboard',
     'admin.user',
     'admin.homepage',
