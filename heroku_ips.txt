@@ -1,0 +1,114 @@
+[
+  {
+    "country": "Ireland",
+    "created_at": "2013-09-19T01:29:12Z",
+    "description": "Europe",
+    "id": "ed30241c-ed8c-4bb6-9714-61953675d0b4",
+    "locale": "Dublin",
+    "name": "eu",
+    "private_capable": false,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "eu-west-1"
+    },
+    "updated_at": "2016-08-09T22:03:28Z"
+  },
+  {
+    "country": "United States",
+    "created_at": "2012-11-21T20:44:16Z",
+    "description": "United States",
+    "id": "59accabd-516d-4f0e-83e6-6e3757701145",
+    "locale": "Virginia",
+    "name": "us",
+    "private_capable": false,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "us-east-1"
+    },
+    "updated_at": "2016-08-09T22:03:28Z"
+  },
+  {
+    "country": "Ireland",
+    "created_at": "2016-12-06T20:54:32Z",
+    "description": "Dublin, Ireland",
+    "id": "6f2b2ec9-b087-4976-8ec9-5d2f62276aeb",
+    "locale": "Dublin",
+    "name": "dublin",
+    "private_capable": true,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "eu-west-1"
+    },
+    "updated_at": "2017-06-20T14:14:34Z"
+  },
+  {
+    "country": "Germany",
+    "created_at": "2015-08-20T01:37:59Z",
+    "description": "Frankfurt, Germany",
+    "id": "37095377-0fed-41e5-b2db-778818d362aa",
+    "locale": "Frankfurt",
+    "name": "frankfurt",
+    "private_capable": true,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "eu-central-1"
+    },
+    "updated_at": "2015-08-20T01:37:59Z"
+  },
+  {
+    "country": "United States",
+    "created_at": "2015-08-20T01:37:59Z",
+    "description": "Oregon, United States",
+    "id": "be90a7d3-570f-4ba7-bc42-f33c2cbece22",
+    "locale": "Oregon",
+    "name": "oregon",
+    "private_capable": true,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "us-west-2"
+    },
+    "updated_at": "2015-08-20T01:37:59Z"
+  },
+  {
+    "country": "Australia",
+    "created_at": "2016-07-21T17:09:10Z",
+    "description": "Sydney, Australia",
+    "id": "ed26b65f-6153-40cf-9839-43e021474f52",
+    "locale": "Sydney",
+    "name": "sydney",
+    "private_capable": true,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "ap-southeast-2"
+    },
+    "updated_at": "2017-01-25T20:57:32Z"
+  },
+  {
+    "country": "Japan",
+    "created_at": "2015-08-20T01:37:59Z",
+    "description": "Tokyo, Japan",
+    "id": "478864c7-3c1a-4fbd-992b-7c6160abfb71",
+    "locale": "Tokyo",
+    "name": "tokyo",
+    "private_capable": true,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "ap-northeast-1"
+    },
+    "updated_at": "2015-08-20T01:37:59Z"
+  },
+  {
+    "country": "United States",
+    "created_at": "2015-08-20T01:37:59Z",
+    "description": "Virginia, United States",
+    "id": "3544427c-5b3b-4e1e-b01a-b66362573b26",
+    "locale": "Virginia",
+    "name": "virginia",
+    "private_capable": true,
+    "provider": {
+      "name": "amazon-web-services",
+      "region": "us-east-1"
+    },
+    "updated_at": "2015-08-20T01:37:59Z"
+  }
+]

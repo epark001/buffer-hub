@@ -119,6 +119,23 @@ DATABASES = {
 #     }
 # }
 
+# import pymysql
+# import time
+
+# mydb = pymysql.connect(host=DATABASES['default']['HOST'],
+#                            port=3306,
+#                            db=DATABASES['default']['NAME'],
+#                            user=DATABASES['default']['USER'],
+#                            password=DATABASES['default']['PASSWORD'])
+# cursor = mydb.cursor()
+
+# temp = 'INSERT INTO Testing(_id) VALUES(\'' + time.ctime(time.time()) + '\')'
+# print(temp)
+# cursor.execute(temp)
+ 
+# mydb.commit()
+# cursor.close()
+
 
 
 # Password validation
