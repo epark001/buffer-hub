@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'admin',
     'admin.login',
     'admin.gpa_table',
+    'admin.gen_ed',
     'admin.dashboard',
     'admin.user',
     'admin.homepage',

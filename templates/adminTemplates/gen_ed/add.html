@@ -1,0 +1,84 @@
+{% extends "adminTemplates/layouts/layout-dashboard.html" %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block main-section %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="main-section">
+
+      {% if messages %}
+      <div class="alert alert-danger" role="alert"> {% for message in messages %} <small{% if message.tags %} class="error1 {{ message.tags }}"{% endif %}>{{ message }}</small> {% endfor %} </div>
+      {% endif %}
+      <form action="{% url 'gen_ed-save' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label for="gen_ed-name">course_comb</label>
+              <input name="course_comb" type="text" class="form-control" id="course_comb" placeholder="Add course_comb">
+            </div>
+          </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">course</label>
+                <input name="course" type="text" class="form-control" id="course" placeholder="Add course">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">course_title</label>
+                <input name="course_title" type="text" class="form-control" id="course_title" placeholder="Add course_title">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">acp</label>
+                <input name="acp" type="text" class="form-control" id="acp" placeholder="Add acp">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">cs</label>
+                <input name="cs" type="text" class="form-control" id="cs" placeholder="Add cs">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">hum</label>
+                <input name="hum" type="text" class="form-control" id="hum" placeholder="Add hum">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">nat</label>
+                <input name="nat" type="text" class="form-control" id="nat" placeholder="Add nat">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">qr</label>
+                <input name="qr" type="text" class="form-control" id="qr" placeholder="Add qr">
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group text-left">
+                <label for="gen_ed-name">sbs</label>
+                <input name="sbs" type="text" class="form-control" id="sbs" placeholder="Add sbs">
+              </div>
+            </div>
+    </div>
+
+        <div class="row">
+            <div class="col text-right">
+              <button type="submit" class="btn btn-outline-success">Submit</button>
+              <button onclick="location.href='{% url 'gen_ed-index' %}'" type="button" class="btn btn-outline-secondary">Dismiss</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -27,15 +27,17 @@
                                 <th scope="col">SL No</th>
                                 <th scope="col">course_comb</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Course Title</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                             {% for row in data %}
+
                                 <tr>
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ row.course_comb }}</td>
-                                <td>{{ row.subject }}</td>
+                                <td>{{ row.course_title }}</td>
                                 </tr>
 
 							{% endfor %}
