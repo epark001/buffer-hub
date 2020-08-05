@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>buffer_hub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href='{% static "./css/bootstrap.min.css" %}' rel="stylesheet">
+    <link href='{% static "./css/main.css" %}' rel="stylesheet">
+
+    <link href='{% static "./css/fontawesome.all.min.css" %}' rel="stylesheet">
+
+</head>
+<body>
+{% include "frontendTemplates/layouts/navbar-about.html" %}
+
+<section class="about-team">
+        <div class="w3-container w3-deep-orange">
+          <h2 style="color:black">Team Flask Task</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12 ">
+                    <div class="team-detail">
+                        <a href="#"><img src="https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/33942653_2090856710956877_9184582864354672640_o.jpg?_nc_cat=101&_nc_sid=7aed08&_nc_ohc=SLSeLS84r5AAX9AwVtD&_nc_ht=scontent-ort2-2.xx&oh=0675ffefb3d4372a74d6eee77d6281dd&oe=5F509B74" alt="xxx" class="img-rounded img-responsive"></a>
+                        <div class="block-anim">
+
+                            <h4 style="color:black">Edgar Cuevas <br><span style="color:black" >Front-End and In-Between Connections</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="team-detail">
+                        <a href="#"><img src="https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/89993201_2407559036012931_3227279576296062976_o.jpg?_nc_cat=109&_nc_sid=85a577&_nc_ohc=EHvDVZ4MY5IAX8vUwKP&_nc_ht=scontent-ort2-2.xx&oh=c01ae85a82440c3e1d6baf23c6319983&oe=5F4F86B5" alt="xxx" class="img-rounded img-responsive"></a>
+                        <div class="block-anim">
+
+                            <h4 style="color:black" >Edward Park<br><span style="color:black">Back-End and In-Between Connections</span></h4>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="team-detail">
+                        <a href="#"><img src="https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-1/c0.210.540.540a/12189996_1026746187356241_1861843249809638455_n.jpg?_nc_cat=104&_nc_sid=dbb9e7&_nc_ohc=MVqqbVEF1OcAX97kriV&_nc_ht=scontent-ort2-2.xx&oh=d3e217f8543d8f542ff90c69a476ac25&oe=5F510326" alt="xxx" class="img-rounded img-responsive"></a>
+                        <div class="block-anim">
+                            <h4 style="color:black">Ishaan Datta<br><span style="color:black" >Modal Guru</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+        <div class="w3-container w3-deep-orange">
+            <h2 style="color:black">Hello,</h2>
+            <p style="color:black">We are the technerds behind BufferHub. We decided to work on this project as a new team effort to better improve the academic performance of students at the University of Illinois. We would like to thank Wade Fagen for being so genorous and allowing us to use his data for our project.
+            Please support Wade by going to his <a href="https://github.com/wadefagen/"> GitHub </a></p>
+        </div>
+        {% include "frontendTemplates/layouts/footer-about.html" %}
+
+</body>
+<script src='{% static "./js/jquery.min.js" %}'></script>
+
+<script src='{% static "./js/bootstrap.bundle.min.js" %}'></script>
+
+<script src='{% static "./js/jquery-ui.min.js" %}'></script>
+
+<script src='{% static "./js/main.js" %}'></script>
+</html>

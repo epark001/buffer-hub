@@ -47,6 +47,28 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="#student_miscSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> Student Misc</a>
+                    <ul class="collapse list-unstyled" id="student_miscSubmenu">
+                        <li>
+                            <a href="{% url 'student_misc-index' %}">View Index</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'student_misc-add' %}">Add Value</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#sctSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user"></i> Student Courses</a>
+                    <ul class="collapse list-unstyled" id="sctSubmenu">
+                        <li>
+                            <a href="{% url 'sct-index' %}">View Index</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'sct-add' %}">Add Value</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#" onclick="triggerModal();"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a>
                 </li>
             </ul>
