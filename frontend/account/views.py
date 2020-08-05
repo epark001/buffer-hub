@@ -57,6 +57,18 @@ def sqlsearch(request):
 	return render(request, 'frontendTemplates/account/sqlsearch.html', {'usr':usr})
 
 @login_required(login_url='home-login')
+def course_insert(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/course_insert.html', {'usr':usr})
+@login_required(login_url='home-login')
 def course_search(request):
 	
 	usr = CustomUser.objects.filter(pk=request.user.id)
