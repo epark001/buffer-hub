@@ -27,6 +27,18 @@ def index(request):
 		usr = usr.get()
 
 	return render(request, 'frontendTemplates/account/index.html', {'usr':usr})
+@login_required(login_url='home-login')
+def about_page(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/about.html', {'usr':usr})
 
 
 @login_required(login_url='home-login')
