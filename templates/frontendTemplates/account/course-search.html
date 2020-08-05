@@ -203,31 +203,30 @@
                 </div>
 
             </div>
+            <label for="inputState__">Course Number</label>
             <form name="myform">
                 <table>
                 <tr>
                 <td>
+                    <div class="form-input-bg">
                 <select name="one"  class="form-control" onchange="if (this.value!='other'){this.form['other'].style.visibility='visible'}else {this.form['other'].style.visibility='hidden'};">
-                <option value="" selected="selected">Select...</option>
-                <option value="1">Range</option>
-                
-                
-                <option value="other">Single</option>
+                    <option value="other"selected="selected">Single</option>
+                    <option value="1" >Range</option>
                 </select>
-                <div class="form-input-bg">
-
-                <input type="text" name="name" class="form-control" id="inputEmail4">
                 </div>
                 <div class="form-input-bg">
-                    <input type="text" style="visibility:hidden"  name="other" class="form-control" id="inputEmail4">
-                 </div>    
+                    <input type="text" name="name" class="form-control" id="inputEmail4">
+                </div>
+                <div class="form-input-bg">
+                    <input type="text" style="visibility:hidden" name="other" class="form-control" id="inputEmail4">
+                </div>    
             </td>
                 </tr>
                 </table>
                 </form>
                 <div class="text-right">
                     <button type="submit" class="button">Search</button>
-                    </div>
+                </div>
         </form>
     </div>
 </div>
