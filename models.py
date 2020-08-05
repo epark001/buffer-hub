@@ -54,7 +54,7 @@ class GenEd(models.Model):
 
 
 class StudentCourseTable(models.Model):
-    email = models.ForeignKey('UserAccounts', models.DO_NOTHING, db_column='email_Id')  # Field name made lowercase.
+    email = models.CharField(db_column='email_Id', max_length=255)  # Field name made lowercase.
     field_id = models.CharField(db_column='_id', primary_key=True, max_length=120)  # Field renamed because it started with '_'.
     course_comb = models.ForeignKey(GpaTable, models.DO_NOTHING, db_column='Course_Comb')  # Field name made lowercase.
     letter_grade = models.CharField(db_column='Letter_Grade', max_length=300)  # Field name made lowercase.
@@ -67,7 +67,7 @@ class StudentCourseTable(models.Model):
 
 
 class StudentMisc(models.Model):
-    email = models.OneToOneField('UserAccounts', models.DO_NOTHING, db_column='email_Id', primary_key=True)  # Field name made lowercase.
+    email = models.CharField(db_column='email_Id', primary_key=True,max_length=255)  # Field name made lowercase.
     major_taken = models.CharField(db_column='Major_Taken', max_length=50)  # Field name made lowercase.
     major_percentile = models.CharField(db_column='Major_Percentile', max_length=50)  # Field name made lowercase.
     gened_taken = models.CharField(db_column='Gened_Taken', max_length=50)  # Field name made lowercase.

@@ -62,6 +62,7 @@ def searchRequest(request):
 		gen_ed = request.POST['gened']
 		str = """ SELECT * FROM Gen_ED WHERE ACP='ACP' """
 		data = GenEd.objects.raw(str)
+		print (type(data))
 		return render(request, 'frontendTemplates/account/sqlsearchcomplete.html', {'data':data})
 	return redirect('home-login')
 
