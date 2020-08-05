@@ -8,6 +8,7 @@ from django.contrib.auth import login as auth_login
 from admin.user.models import CustomUser
 from admin.gen_ed.models import GenEd
 from django.db import connection
+from operator import itemgetter
 
 import re
 import json
@@ -27,6 +28,18 @@ def index(request):
 		usr = usr.get()
 
 	return render(request, 'frontendTemplates/account/index.html', {'usr':usr})
+@login_required(login_url='home-login')
+def about_page(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/about.html', {'usr':usr})
 
 
 @login_required(login_url='home-login')
@@ -58,6 +71,16 @@ def sqlsearch(request):
 
 @login_required(login_url='home-login')
 def profsearch(request):
+  	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+  return render(request, 'frontendTemplates/account/profsearch.html', {'usr':usr})
+    
+def course_insert(request):
 	
 	usr = CustomUser.objects.filter(pk=request.user.id)
 
@@ -66,8 +89,8 @@ def profsearch(request):
 		return redirect('home-login')
 	else:
 		usr = usr.get()
+return render(request, 'frontendTemplates/account/course_insert.html', {'usr':usr})
 
-	return render(request, 'frontendTemplates/account/profsearch.html', {'usr':usr})
 
 @login_required(login_url='home-login')
 def sqlsearchProf(request):
@@ -94,6 +117,83 @@ def sqlsearchProf(request):
 		#print(output)
 		return render(request, 'frontendTemplates/account/profsqlsearchcomplete.html', {'data':output})
 	return redirect('home-login')
+
+@login_required(login_url='home-login')
+def course_search(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/course-search.html', {'usr':usr})
+
+
+def search_course(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		# print(request.POST)
+		input['Subject'] = request.POST['subject']
+		input['range_Sel'] = request.POST['one']
+		input['GPA_GTE'] = request.POST['gpa_wanted']
+		input['Sort_By'] = request.POST['order_by_selection']
+		input['num_lower'] = request.POST['first_number']
+		input['num_upper'] = request.POST['Single']
+		
+		#print(input['Sort_By'])
+		
+		#print(input['Order_By'])
+		with connection.cursor() as cursor:
+			if input['range_Sel'] == 'Single':
+				cursor.execute('''
+				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
+				FROM GPA_TABLE
+				Where Subject = %s and 
+				number = %s and
+				Average_Grade >= %s;
+				''',[input['Subject'], input['num_lower'], input['GPA_GTE']])
+			else:
+				cursor.execute('''
+				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
+				FROM GPA_TABLE
+				Where Subject = %s and 
+				number >= %s and
+				number <= %s and
+				Average_Grade >= %s;
+				''',[input['Subject'], input['num_lower'], input['num_upper'], input['GPA_GTE']])
+			temp = cursor.fetchall()
+			if temp:
+				temp = list(temp)
+				output['data'] = []
+				for x in temp:
+					result = {}
+					result['course_comb'] = x[0]
+					result['Average_Grade'] = x[1]
+					result['Primary_Instructor'] = x[2]
+					#print(result)
+					output['data'].append(result)
+					output['status'] = "Success"
+				if input['Sort_By'] == 'AVG_GPA_DESC':
+					output['data'] = sorted(output['data'], key=itemgetter('Average_Grade'),reverse=True)
+				elif input['Sort_By'] == 'AVG_GPA_ASC':
+					output['data'] = sorted(output['data'], key=itemgetter('Average_Grade'))
+				elif input['Sort_By'] == 'NUMBER_DESC':
+					output['data'] = sorted(output['data'], key=itemgetter('course_comb'),reverse=True)
+				elif input['Sort_By'] == 'NUMBER_ASC':
+					output['data'] = sorted(output['data'], key=itemgetter('course_comb'))
+		
+			else:
+				output['status'] = "Failure: Course Not Found"
+			#print(output['data'])
+		return render(request, 'frontendTemplates/account/course-search-complete.html', {'data':output['data']})
+	return JsonResponse(output)
+
 
 @login_required(login_url='home-login')
 def searchRequest(request):
