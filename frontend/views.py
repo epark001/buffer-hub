@@ -194,7 +194,7 @@ def login_post(request):
 
 		if user.check_password(password):
 			auth_login(request, user)
-			return redirect('home-index')
+			return redirect('account-index')
 		else:
 			return redirect('home-login')
 	except UserModel.DoesNotExist:
