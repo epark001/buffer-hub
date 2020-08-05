@@ -66,19 +66,21 @@ def update_user(request):
 	output['data'] = None
 	if request.method == 'POST':
 		input = {}
-		input['email_Id'] = request.POST['email_Id']
-		input['Target_GPA gpa'] = request.POST['Target_GPA']
+		input['Target_GPA'] = request.POST['Target_GPA']
 		input['major'] = request.Post['major']
 
 		result = {}
 		with connection.cursor() as cursor:
-			cursor.execute("%s",[input['email_Id']])
+			cursor.execute('''
+			Update Student_MISC
+			Set Major_Taken = %s, Target_GPA = %s
+			Where email_Id = %s;''',
+            [input['major'], input['Target_GPA'], request.user.get_username()])
 			temp = cursor.fetchone()
 			if temp:
 				temp = list(temp)
-				result['email_Id'] = temp[0]
-				output['data'] = result
-				output['status'] = "Success"
+				output['data'] = temp
+				output['status'] = "Success: Entries Updated"
 			else:
 				output['status'] = "Failure: Email not found"
 	return JsonResponse(output)
@@ -239,9 +241,10 @@ def signup_post(request):
 		usr = CustomUser(first_name=f_name, last_name=l_name, username = email_Id,password=make_password(password), )
 
 		usr.save()
-		# with connection.cursor() as cursor:
-		# 	cursor.execute("Insert Into User_Accounts(email_Id, password, fname, lname) Values (%s, %s, %s, %s)",
-        #     [new_user["email_Id"], new_user["password"], new_user["fname"], new_user["lname"]])
+
+		with connection.cursor() as cursor:
+			cursor.execute("Insert Into Student_MISC(email_Id) Values (%s)",
+		    [email_Id])
 
 		messages.success(request, 'Successfully Registered!')
 		return redirect('home-login')
