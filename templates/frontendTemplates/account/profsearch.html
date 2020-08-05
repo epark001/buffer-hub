@@ -9,7 +9,7 @@
 
 <div class="col-9">
     <div class="section-content">
-        <h3>Search a Gen-Ed</h3>
+        <h3>Search a Professor</h3>
 
 {% if messages %}
 <div class="alert alert-danger" role="alert">
@@ -22,26 +22,20 @@
 {% endif %}
 
 
-        <form action="{% url 'account-sql-search-look' %}" id="editForm" class="form-account form" method="post">
+        <form action="{% url 'prof-sql-search-look' %}" id="editForm" class="form-account form" method="post">
 
         	{% csrf_token %}
 
 
 
-
-
             <div class="form-group">
-                <label for="inputState__">GenEdClasses</label>
+                <label for="inputState__">Professor First Name</label>
                 <div class="form-input-bg">
-                        <select id="gened" class="form-control" name="gened">
-                                <option value="acp">ACP</option>
-                                <option value="cs">CS</option>
-                                <option value="hum">HUM</option>
-                                <option value="nat">NAT</option>
-                                <option value="qr">QR</option>
-                                <option value="sbs">sbs</option>
-
-                            </select>
+                    <input type="text" name="firstname" class="form-control" id="firstname">
+                </div>
+                <label for="inputState__">Professor Last Name</label>
+                <div class="form-input-bg">
+                    <input type="text" name="lastname" class="form-control" id="lastname">
                 </div>
             </div>
 

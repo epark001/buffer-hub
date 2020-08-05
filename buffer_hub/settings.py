@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'admin.homepage',
     'api',
     'rest_framework',
-    'temp'
+    'temp',
+    'csvimport.app.CSVImportConf',
 ]
 
 AUTH_USER_MODEL = "user.CustomUser"
