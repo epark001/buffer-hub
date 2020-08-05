@@ -1,0 +1,56 @@
+{% extends "adminTemplates/layouts/layout-dashboard.html" %}
+
+{% block title %} Admin Dashboard {% endblock %}
+
+{% block main-section %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <div class="main-section">
+
+      {% if messages %}
+      <div class="alert alert-danger" role="alert"> {% for message in messages %} <small{% if message.tags %} class="error1 {{ message.tags }}"{% endif %}>{{ message }}</small> {% endfor %} </div>
+      {% endif %}
+      <form action="{% url 'student_misc-save' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label for="student_misc-name">course_comb</label>
+              <input name="course_comb" type="text" class="form-control" id="course_comb" placeholder="Add course_comb">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label for="student_misc-name">letter_grade</label>
+              <input name="letter_grade" type="text" class="form-control" id="letter_grade" placeholder="Add course_comb">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label for="student_misc-name">gpa_hours</label>
+              <input name="gpa_hours" type="text" class="form-control" id="gpa_hours" placeholder="Add course_comb">
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group text-left">
+              <label for="student_misc-name">gpa_quality_points</label>
+              <input name="gpa_quality_points" type="text" class="form-control" id="gpa_quality_points" placeholder="Add course_comb">
+            </div>
+          </div>
+
+
+    </div>
+
+        <div class="row">
+            <div class="col text-right">
+              <button type="submit" class="btn btn-outline-success">Submit</button>
+              <button onclick="location.href='{% url 'student_misc-index' %}'" type="button" class="btn btn-outline-secondary">Dismiss</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

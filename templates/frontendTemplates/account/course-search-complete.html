@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width ,  initial-scale=1.0" name="viewport">
+    <!-- CSS Libraries -->
+    <link href='{% static "./css/bootstrap.min.css" %}' rel="stylesheet">
+
+    <link href='{% static "./css/fontawesome.all.min.css" %}' rel="stylesheet">
+
+    <link href='{% static "./css/main.css" %}' rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <title>
+        {% block title %} buffer_hub | Account {% endblock %}
+    </title>
+</head>
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      background-color: hsl(276, 57%, 62%);
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    </style>
+<body>
+    {% include "frontendTemplates/layouts/navbar-account.html" %}
+
+
+{% block main-section %}
+
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<div class="main-section">
+							<h2 class="content-heading">Course List</h2>
+                        
+
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                <th scope="col">Entry Number</th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Average GPA</th>
+                                <th scope="col">Primary Instructor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in data %}
+                                <tr>
+                                <td bgcolor="#13294b">{{ forloop.counter }}</td>
+                                <td bgcolor="#E84A27">{{ row.course_comb }}</td>
+                                <td bgcolor="#13294b">{{ row.Average_Grade }}</td>
+                                <td bgcolor="#E84A27" onclick="triggerModal(this);" id="instructor">{{ row.Primary_Instructor }}</td>
+                                </tr>
+
+							{% endfor %}
+
+                            </tbody>
+                            </table>
+
+							
+
+						</div>
+					</div>
+				</div>
+            </div>
+            
+            <div id="popup1" class="overlay">
+                <div class="popup">
+                    <h2>Professor Information</h2>
+                    <a class="close" href="#" >&times;</a>
+                    <div class="content">
+                    </div>
+                </div>
+            </div>
+            <div id="myModal" class="modal">
+
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close" onclick="closeModal();">&times;</span>
+                  <p id="fname"></p>
+                  <p id="lname"></p>
+                  <p id="dept"></p>
+                  <p id="numrate"></p>
+                  <p id="rating"></p>
+                </div>
+              
+            </div>
+
+{% include "frontendTemplates/modal-content.html" %}
+{% endblock %}
+
+<script>
+    function triggerModal(param){
+        // console.log("clicked")
+        console.log(param)
+        document.getElementById("myModal").style.display = "block";
+        values = {};
+        // values['name'] = document.getElementById("instructor").innerHTML;
+        values['name'] = param.innerHTML;
+
+
+        $.post("prof-modal",
+        values,
+        function(data, status){
+            console.log(data['data'])
+            document.getElementById("fname").innerHTML = "First Name: " + data['data']['firstname']
+            document.getElementById("lname").innerHTML = "Last Name: " + data['data']['lastname']
+            document.getElementById("dept").innerHTML = "Department: " + data['data']['dept']
+            document.getElementById("numrate").innerHTML = "Number of Ratings: " + data['data']['numratings']
+            document.getElementById("rating").innerHTML = "Rating: " + data['data']['overallrating']
+        });
+    }
+    function closeModal(){
+        document.getElementById("myModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            document.getElementById("myModal").style.display = "none";
+        }
+    }
+
+</script>
+</body>

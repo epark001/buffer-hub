@@ -28,19 +28,52 @@
                             </li>
 
                             <li class="section-menu-nav-item">
-                                <a class="d-block section-menu-nav-link">
+                                <a href ="{% url 'sct-index-user' %}" class="d-block section-menu-nav-link">
                                     <span>
-                                        <i class="far fa-credit-card"></i>
+                                        <i class="fas fa-glasses"></i>
                                     </span>
-                                    Update/Delete Courses
+                                    Manage Courses
+                                </a>
+                            </li>
+                            <li class="section-menu-nav-item">
+                                <a href="{% url 'account-course-insert' %}" class="d-block section-menu-nav-link">
+                                    <span>
+                                        <i class="fas fa-book-dead"></i>
+                                    </span>
+                                    Insert User Courses
                                 </a>
                             </li>
                             <li class="section-menu-nav-item">
                                 <a href="{% url 'account-sql-search' %}" class="d-block section-menu-nav-link">
                                     <span>
+                                        <i class="fas fa-school"></i>
+                                    </span>
+                                    Gen-Ed Search
+                                </a>
+                            </li>
+                            <li class="section-menu-nav-item">
+                                <a href="{% url 'account-course-search' %}" class="d-block section-menu-nav-link">
+                                    <span>
+                                        <i class="fas fa-book-open"></i>
+                                    </span>
+                                    Course Catalog
+                                </a>
+                            </li>
+                            <li class="section-menu-nav-item">
+                                <a href="{% url 'prof-sql-search' %}" class="d-block section-menu-nav-link">
+                                    <span>
                                         <i class="far fa-credit-card"></i>
                                     </span>
-                                    Course Search
+                                    Search Professor
+
+                                </a>
+                            </li>
+                          <li class="section-menu-nav-item">
+                                <a href="{% url 'account-sql-search' %}" class="d-block section-menu-nav-link">
+                                    <span>
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </span>
+                                    Grad Requirements
                                 </a>
                             </li>
                         </ul>

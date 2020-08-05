@@ -36,6 +36,83 @@ def index(request):
 
 	return render(request, 'frontendTemplates/home/index.html', {'data':data})
 
+def template(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		input['email_Id'] = request.user.get_username()
+		
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute("%s",[input['email_Id']])
+			temp = cursor.fetchone()
+			if temp:
+				temp = list(temp)
+				result['email_Id'] = temp[0]
+				output['data'] = result
+				output['status'] = "Success"
+			else:
+				output['status'] = "Failure: Email not found"
+	return JsonResponse(output)
+
+
+def update_user(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		print(request.POST)
+		input['Target_GPA'] = request.POST['Target_GPA']
+		input['major'] = request.POST['major']
+
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute('''
+			Update Student_MISC
+			Set Major_Taken = %s, Target_GPA = %s
+			Where email_Id = %s;''',
+            [input['major'], input['Target_GPA'], request.user.get_username()])
+			temp = cursor.fetchone()
+			if temp:
+				temp = list(temp)
+				output['data'] = temp
+				output['status'] = "Success: Entries Updated"
+			else:
+				output['status'] = "Failure: Email not found"
+		return JsonResponse(output)
+
+def get_user_info(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'GET':
+		input = {}
+		input['email_Id'] = request.user.get_username()
+		#print(request.user)
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute("SELECT m.email_Id, u.first_name, u.last_name, m.Major_Taken, m.Major_Percentile, m.Gened_Percentile, m.Current_GPA, m.Hours_Completed, m.Target_GPA FROM user_customuser u Left Outer Join Student_MISC m on (u.username = m.email_Id) Where m.email_Id = %s;",[input['email_Id']])
+			temp = cursor.fetchone()
+			if temp:
+				temp = list(temp)
+				result['email_Id'] = temp[0]
+				result['first_name'] = temp[1]
+				result['last_name'] = temp[2]
+				result['major'] = temp[3]
+				result['major_percentile'] = temp[4]
+				result['gened_percentile'] = temp[5]
+				result['current_gpa'] = temp[6]
+				result['hours_completed'] = temp[7]
+				result['target_gpa'] = temp[8]
+				output['data'] = result
+				output['status'] = "Success"
+			else:
+				output['status'] = "Failure: Email not found"
+	return JsonResponse(output)
+
 def demo_insert(request):
 	if request.method == 'POST':
 		info = {}
@@ -163,9 +240,10 @@ def signup_post(request):
 		usr = CustomUser(first_name=f_name, last_name=l_name, username = email_Id,password=make_password(password), )
 
 		usr.save()
-		# with connection.cursor() as cursor:
-		# 	cursor.execute("Insert Into User_Accounts(email_Id, password, fname, lname) Values (%s, %s, %s, %s)",
-        #     [new_user["email_Id"], new_user["password"], new_user["fname"], new_user["lname"]])
+
+		with connection.cursor() as cursor:
+			cursor.execute("Insert Into Student_MISC(email_Id) Values (%s)",
+		    [email_Id])
 
 		messages.success(request, 'Successfully Registered!')
 		return redirect('home-login')
@@ -194,7 +272,7 @@ def login_post(request):
 
 		if user.check_password(password):
 			auth_login(request, user)
-			return redirect('home-index')
+			return redirect('account-index')
 		else:
 			return redirect('home-login')
 	except UserModel.DoesNotExist:

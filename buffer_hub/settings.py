@@ -43,12 +43,15 @@ INSTALLED_APPS = [
     'admin.login',
     'admin.gpa_table',
     'admin.gen_ed',
+    'admin.student_misc',
     'admin.dashboard',
+    'admin.sct',
     'admin.user',
     'admin.homepage',
     'api',
     'rest_framework',
-    'temp'
+    'temp',
+    'csvimport.app.CSVImportConf',
 ]
 
 AUTH_USER_MODEL = "user.CustomUser"

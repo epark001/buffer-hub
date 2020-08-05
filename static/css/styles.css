@@ -1,0 +1,212 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+.img-responsive {
+  max-width: 100%;
+}
+
+.img-rounded {
+  border-radius: 6px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  width: 1140px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  zoom: 1;
+}
+.container:before, .container:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.container:after {
+  clear: both;
+}
+
+.row {
+  zoom: 1;
+}
+.row:before, .row:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.row:after {
+  clear: both;
+}
+
+.col-md-3 {
+  width: 25%;
+  float: left;
+  padding: 0;
+}
+
+.team-detail {
+  position: relative;
+}
+.team-detail .block-anim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
+  zoom: 1;
+  background-color: transparent\9;
+  opacity: 0;
+  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 6px 6px 0 0;
+}
+.team-detail .block-anim div.search-about {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.team-detail .block-anim div.search-about > a {
+  position: relative;
+  z-index: 20;
+  width: 48px;
+  height: 48px;
+  display: block;
+  background-color:palegreen;
+  border-radius: 48px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 70px;
+}
+.team-detail .block-anim div.search-about > a i {
+  color: #967ADC;
+  line-height: 48px;
+  font-size: 22px;
+}
+.team-detail .block-anim div.search-about:before, .team-detail .block-anim div.search-about:after {
+  content: '';
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+.team-detail .block-anim div.search-about:before {
+  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  left: 0;
+  background-color: #A0D468;
+  border-radius: 6px 0 0 0;
+  -webkit-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+  -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, -90deg);
+  -moz-transform: perspective(1000px) rotate3d(0, 1, 0, -90deg);
+  -ms-transform: perspective(1000px) rotate3d(0, 1, 0, -90deg);
+  -o-transform: perspective(1000px) rotate3d(0, 1, 0, -90deg);
+}
+.team-detail .block-anim div.search-about:after {
+  right: 0;
+  background-color: #8CC152;
+  border-radius: 0 6px 0 0;
+  -webkit-transform-origin: 0% 50%;
+  transform-origin: 0% 50%;
+  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, 90deg);
+  -moz-transform: perspective(1000px) rotate3d(0, 1, 0, 90deg);
+  -ms-transform: perspective(1000px) rotate3d(0, 1, 0, 90deg);
+  -o-transform: perspective(1000px) rotate3d(0, 1, 0, 90deg);
+}
+.team-detail .block-anim h3 {
+  text-align: center;
+  margin-top: 80%;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.team-detail .block-anim h3 span {
+  font-size: 12px;
+  font-weight: bold;
+}
+.team-detail .sosical-team {
+  margin-top: 20px;
+}
+.team-detail .sosical-team a {
+  display: inline-block;
+  width: 46px;
+  height: 46px;
+  line-height: 46px;
+  border-radius: 46px;
+  font-size: 16px;
+  margin: 0 auto;
+  color: #FFF;
+  position: relative;
+  z-index: 10;
+}
+.team-detail .sosical-team a:nth-child(1), .team-detail .sosical-team a:nth-child(2), .team-detail .sosical-team a:nth-child(3) {
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+  -moz-transform: translateY(100px);
+  -ms-transform: translateY(100px);
+  -o-transform: translateY(100px);
+}
+.team-detail .sosical-team a:nth-child(1) {
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.team-detail .sosical-team a:nth-child(2) {
+  -webkit-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.team-detail .sosical-team a:nth-child(3) {
+  -webkit-transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.team-detail .sosical-team a:before {
+  width: 50%;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #FC6E51;
+  z-index: -10;
+  height: 46px;
+  border-radius: 46px 0 0 46px;
+}
+.team-detail .sosical-team a:after {
+  width: 50%;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #E9573F;
+  height: 46px;
+  border-radius: 0 46px 46px 0;
+  z-index: -10;
+}
+.team-detail:hover .block-anim {
+  opacity: 1;
+}
+.team-detail:hover .block-anim div.search-about {
+  opacity: 1;
+}
+.team-detail:hover .block-anim div.search-about:before, .team-detail:hover .block-anim div.search-about:after {
+  -webkit-transform: perspective(1000px) rotate3d(0, 1, 0, 0deg);
+  -moz-transform: perspective(1000px) rotate3d(0, 1, 0, 0deg);
+  -ms-transform: perspective(1000px) rotate3d(0, 1, 0, 0deg);
+  -o-transform: perspective(1000px) rotate3d(0, 1, 0, 0deg);
+}
+.team-detail:hover .sosical-team a:nth-child(1), .team-detail:hover .sosical-team a:nth-child(2), .team-detail:hover .sosical-team a:nth-child(3) {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+}
