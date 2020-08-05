@@ -39,9 +39,10 @@ def save(request):
         letter_grade_val = request.POST['letter_grade']
         gpa_hours_val = request.POST['gpa_hours']
         gpa_quality_points_val=request.POST['gpa_quality_points']
+        primary_instructor_val=request.POST['primary_instructor']
 
 
-        gen_ed_val = StudentCourseTable(email=email_val,field_id=field_id_val, course_comb=course_comb_val,letter_grade=letter_grade_val,gpa_hours=gpa_hours_val,gpa_quality_points=gpa_quality_points_val)
+        gen_ed_val = StudentCourseTable(email=email_val,field_id=field_id_val, course_comb=course_comb_val,letter_grade=letter_grade_val,gpa_hours=gpa_hours_val,gpa_quality_points=gpa_quality_points_val, primary_instructor=primary_instructor_val)
 
         gen_ed_val.save()
 
@@ -60,7 +61,7 @@ def index_user(request):
     
     if request.method == 'GET':
         
-        data = StudentCourseTable.objects.filter(email=request.user.username)
+        data = StudentCourseTable.objects.filter(email_id=request.user.username)
         print (data)
         return render(request, 'frontendTemplates/sct/index.html', {'data':data})
 @login_required(login_url='login')
@@ -73,11 +74,27 @@ def save_user(request):
         letter_grade_val = request.POST['letter_grade']
         gpa_hours_val = request.POST['gpa_hours']
         gpa_quality_points_val = int(gpa_hours_val) * dict_grade[letter_grade_val]
+        primary_instructor_val = request.POST['primary_instructor']
 
-        sct = StudentCourseTable(email=email_val, field_id=field_id_val,course_comb=course_comb_val, letter_grade=letter_grade_val, gpa_hours =gpa_hours_val, gpa_quality_points=gpa_quality_points_val)
+        sct = StudentCourseTable(email_id=email_val, field_id=field_id_val,course_comb=course_comb_val, letter_grade=letter_grade_val, gpa_hours =gpa_hours_val, gpa_quality_points=gpa_quality_points_val,primary_instructor=primary_instructor_val)
 
         sct.save()
 
         messages.success(request, 'Courses Added Successfully!')
 
         return redirect('sct-index-user')
+@login_required(login_url='login')
+def delete(request, id):
+
+	if request.method == 'GET':
+
+		sct = StudentCourseTable.objects.filter(pk=id)
+
+		if not sct:
+			messages.error(request, 'No such records found!')
+			return redirect('sct-index-user')
+		else:
+			sct = sct.delete()
+			messages.success(request, 'Record Deleted!')
+
+		return redirect('sct-index-user')
