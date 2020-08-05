@@ -4,7 +4,6 @@ from . import views
 urlpatterns = [
     path('account/',        include('frontend.account.urls')),
     path('',                views.index,        name='home-index'),
-    # path('get-user')        views.get_user,     name='get-user'),
     path('signup/',         views.signup,       name='home-signup'),
     path('signup/post',     views.signup_post,  name='home-signup-post'),
     path('login/',          views.login,        name='home-login'),
@@ -16,5 +15,6 @@ urlpatterns = [
     path('demo-delete/',    views.demo_delete,  name='demo-delete-post'),
     path('demo-site/',      views.demo_site,    name='demo-site-get'),
     path('get-user-info/',  views.get_user_info,name='get-user-info-post'),
-    path('update-user/',    views.update_user,  name='update-user-post')
+    path('update-user/',    views.update_user,  name='update-user-post'),
+    path('search-course/',  views.search_course,name='search_course-post')
 ]
