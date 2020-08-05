@@ -13,7 +13,7 @@
 
 <div class="col-9">
     <div class="section-content">
-        <h3>Search for a Course</h3>
+        <h3>Course Catalog Search</h3>
 
 {% if messages %}
 <div class="alert alert-danger" role="alert">
@@ -26,7 +26,7 @@
 {% endif %}
 
 
-        <form action="{% url 'account-sql-search-look' %}" id="editForm" class="form-account form" method="post">
+        <form action="{% url 'search-course-post' %}" id="editForm" class="form-account form" method="post">
 
         	{% csrf_token %}
 
@@ -204,44 +204,42 @@
 
             </div>
             <div class="form-group">
-                <label for="gpa_wanted_insert">Insert GPA > Wanted</label>
+                <label for="gpa_wanted_insert">GPA Greater Than</label>
                 <div class="form-input-bg">
-                    <input type="text" name="gpa_wanted" class="form-control" id="gpa_wanted" >
+                    <input type="text" name="gpa_wanted" class="form-control" id="gpa_gt" value="0.0">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputState__">Subject</label>
+                <label for="inputState__">Sort By</label>
                 <div class="form-input-bg">
                         <select id="order_by_selection" class="form-control" name="order_by_selection">
-                            <option value="AAS">AVG GPA DESC</option>
-                            <option value="ABE">AVG GPA ASC</option>
-                            <option value="ACCY">NUMBER DESC</option>
-                            <option value="ACE">NUMBER ASC</option>                          
+                            <option value="AVG_GPA_DESC">AVG GPA DESC</option>
+                            <option value="AVG_GPA_ASC">AVG GPA ASC</option>
+                            <option value="NUMBER_DESC">NUMBER DESC</option>
+                            <option value="NUMBER_ASC">NUMBER ASC</option>                          
                             </select>
                 </div>
 
             </div>
             <label for="inputState__">Course Number</label>
-            <form name="myform">
                 <table>
                 <tr>
                 <td>
                     <div class="form-input-bg">
-                <select name="one"  class="form-control" onchange="if (this.value!='other'){this.form['other'].style.visibility='visible'}else {this.form['other'].style.visibility='hidden'};">
-                    <option value="other"selected="selected">Single</option>
-                    <option value="1" >Range</option>
+                <select name="one" id="range_selector" class="form-control" onchange="if (this.value!='Single'){this.form['Single'].style.visibility='visible'}else {this.form['Single'].style.visibility='hidden'};">
+                    <option value="Single"selected="selected">Single</option>
+                    <option value="Range" >Range</option>
                 </select>
                 </div>
                 <div class="form-input-bg">
-                    <input type="text" name="first_number" class="form-control" id="first_number">
+                    <input type="text" name="first_number" class="form-control" id="first_number" value="100">
                 </div>
                 <div class="form-input-bg">
-                    <input type="text" style="visibility:hidden" name="other" class="form-control" id="inputEmail4">
+                    <input type="text" style="visibility:hidden" name="Single" class="form-control" id="second_number" value="400">
                 </div>    
             </td>
                 </tr>
                 </table>
-                </form>
                 <div class="text-right">
                     <button type="submit" class="button">Search</button>
                 </div>
@@ -249,6 +247,24 @@
         
     </div>
 </div>
+<!-- 
+<script>
+    function course_search() {
+        var values = {};
+        values['Subject'] = document.getElementById("subject").value;
+        values['range_Sel'] = document.getElementById("range_selector").value;
+        values['GPA_GTE'] = document.getElementById("gpa_gt").value;
+        values['Sort_By'] = document.getElementById("order_by_selection").value;
+        values['num_lower'] = document.getElementById("first_number").value;
+        values['num_upper'] = document.getElementById("second_number").value;
+
+        $.post("/search-course/",
+        values,
+        function(data, status){
+            window.location.href = "/account/";
+        });
+    }
+</script> -->
 
 
 {% endblock %}

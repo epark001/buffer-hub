@@ -57,30 +57,6 @@ def template(request):
 				output['status'] = "Failure: Email not found"
 	return JsonResponse(output)
 
-def search_course(request):
-	output = {}
-	output['status'] = "Failure"
-	output['data'] = None
-	if request.method == 'POST':
-		input = {}
-		input['email_Id'] = request.user.get_username()
-		input['Subject'] = request.POST['Subject']
-		input['number_Sel'] = request.POST['number_Sel']
-		input['GPA_GTE'] = request.POST['GPA_GTE']
-		input['Sort_By'] = request.POST['Sort_By']
-		
-		result = {}
-		with connection.cursor() as cursor:
-			cursor.execute("%s",[input['email_Id']])
-			temp = cursor.fetchone()
-			if temp:
-				temp = list(temp)
-				result['email_Id'] = temp[0]
-				output['data'] = result
-				output['status'] = "Success"
-			else:
-				output['status'] = "Failure: Email not found"
-	return JsonResponse(output)
 
 def update_user(request):
 	output = {}

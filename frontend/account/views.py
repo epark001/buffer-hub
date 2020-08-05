@@ -69,6 +69,69 @@ def course_search(request):
 
 	return render(request, 'frontendTemplates/account/course-search.html', {'usr':usr})
 
+
+def search_course(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		# print(request.POST)
+		input['Subject'] = request.POST['subject']
+		input['range_Sel'] = request.POST['one']
+		input['GPA_GTE'] = request.POST['gpa_wanted']
+		input['Sort_By'] = request.POST['order_by_selection']
+		input['num_lower'] = request.POST['first_number']
+		input['num_upper'] = request.POST['Single']
+		
+		#print(input['Sort_By'])
+		if input['Sort_By'] == 'AVG_GPA_DESC':
+			input['Order_By'] = 'Average_Grade Desc'
+		elif input['Sort_By'] == 'AVG_GPA_ASC':
+			input['Order_By'] = 'Average_Grade Asc'
+		elif input['Sort_By'] == 'NUMBER_DESC':
+			input['Order_By'] = 'Number Desc'
+		elif input['Sort_By'] == 'NUMBER_ASC':
+			input['Order_By'] = 'Number Asc'
+		
+		
+		with connection.cursor() as cursor:
+			if input['range_Sel'] == 'Single':
+				cursor.execute('''
+				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
+				FROM GPA_TABLE
+				Where Subject = %s and 
+				number = %s and
+				Average_Grade >= %s
+				Order By %s;
+				''',[input['Subject'], input['num_lower'], input['GPA_GTE'], input['Order_By']])
+			else:
+				cursor.execute('''
+				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
+				FROM GPA_TABLE
+				Where Subject = %s and 
+				number >= %s and
+				number <= %s and
+				Average_Grade >= %s
+				Order By %s;
+				''',[input['Subject'], input['num_lower'], input['num_upper'], input['GPA_GTE'], input['Order_By']])
+			temp = cursor.fetchall()
+			if temp:
+				temp = list(temp)
+				output['data'] = []
+				for x in temp:
+					result = {}
+					result['course_comb'] = x[0]
+					result['Average_Grade'] = x[1]
+					result['Primary_Instructor'] = x[2]
+					output['data'].append(result)
+					output['status'] = "Success"
+			else:
+				output['status'] = "Failure: Course Not Found"
+			#print(output['data'])
+		return render(request, 'frontendTemplates/account/sqlsearchcomplete.html', {'data':output['data']})
+	return JsonResponse(output)
+
 @login_required(login_url='home-login')
 def searchRequest(request):
 	if request.method == 'POST':
