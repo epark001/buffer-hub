@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="inputState__">Subject</label>
                 <div class="form-input-bg">
-                        <select id="gender" class="form-control" name="gender">
+                        <select id="subject"  class="form-control" name="subject">
                             <option value="AAS">AAS</option>
                             <option value="ABE">ABE</option>
                             <option value="ACCY">ACCY</option>
@@ -203,6 +203,24 @@
                 </div>
 
             </div>
+            <div class="form-group">
+                <label for="gpa_wanted_insert">Insert GPA > Wanted</label>
+                <div class="form-input-bg">
+                    <input type="text" name="gpa_wanted" class="form-control" id="gpa_wanted" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputState__">Subject</label>
+                <div class="form-input-bg">
+                        <select id="order_by_selection" class="form-control" name="order_by_selection">
+                            <option value="AAS">AVG GPA DESC</option>
+                            <option value="ABE">AVG GPA ASC</option>
+                            <option value="ACCY">NUMBER DESC</option>
+                            <option value="ACE">NUMBER ASC</option>                          
+                            </select>
+                </div>
+
+            </div>
             <label for="inputState__">Course Number</label>
             <form name="myform">
                 <table>
@@ -215,7 +233,7 @@
                 </select>
                 </div>
                 <div class="form-input-bg">
-                    <input type="text" name="name" class="form-control" id="inputEmail4">
+                    <input type="text" name="first_number" class="form-control" id="first_number">
                 </div>
                 <div class="form-input-bg">
                     <input type="text" style="visibility:hidden" name="other" class="form-control" id="inputEmail4">
@@ -228,6 +246,7 @@
                     <button type="submit" class="button">Search</button>
                 </div>
         </form>
+        
     </div>
 </div>
 
