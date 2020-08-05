@@ -8,6 +8,7 @@ from django.contrib.auth import login as auth_login
 from admin.user.models import CustomUser
 from admin.gen_ed.models import GenEd
 from django.db import connection
+from operator import itemgetter
 
 import re
 import json
@@ -97,16 +98,8 @@ def search_course(request):
 		input['num_upper'] = request.POST['Single']
 		
 		#print(input['Sort_By'])
-		if input['Sort_By'] == 'AVG_GPA_DESC':
-			input['Order_By'] = 'Average_Grade Desc'
-		elif input['Sort_By'] == 'AVG_GPA_ASC':
-			input['Order_By'] = 'Average_Grade Asc'
-		elif input['Sort_By'] == 'NUMBER_DESC':
-			input['Order_By'] = 'Number Desc'
-		elif input['Sort_By'] == 'NUMBER_ASC':
-			input['Order_By'] = 'Number Asc'
 		
-		
+		#print(input['Order_By'])
 		with connection.cursor() as cursor:
 			if input['range_Sel'] == 'Single':
 				cursor.execute('''
@@ -114,9 +107,8 @@ def search_course(request):
 				FROM GPA_TABLE
 				Where Subject = %s and 
 				number = %s and
-				Average_Grade >= %s
-				Order By %s;
-				''',[input['Subject'], input['num_lower'], input['GPA_GTE'], input['Order_By']])
+				Average_Grade >= %s;
+				''',[input['Subject'], input['num_lower'], input['GPA_GTE']])
 			else:
 				cursor.execute('''
 				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
@@ -124,9 +116,8 @@ def search_course(request):
 				Where Subject = %s and 
 				number >= %s and
 				number <= %s and
-				Average_Grade >= %s
-				Order By %s;
-				''',[input['Subject'], input['num_lower'], input['num_upper'], input['GPA_GTE'], input['Order_By']])
+				Average_Grade >= %s;
+				''',[input['Subject'], input['num_lower'], input['num_upper'], input['GPA_GTE']])
 			temp = cursor.fetchall()
 			if temp:
 				temp = list(temp)
@@ -136,12 +127,22 @@ def search_course(request):
 					result['course_comb'] = x[0]
 					result['Average_Grade'] = x[1]
 					result['Primary_Instructor'] = x[2]
+					#print(result)
 					output['data'].append(result)
 					output['status'] = "Success"
+				if input['Sort_By'] == 'AVG_GPA_DESC':
+					output['data'] = sorted(output['data'], key=itemgetter('Average_Grade'),reverse=True)
+				elif input['Sort_By'] == 'AVG_GPA_ASC':
+					output['data'] = sorted(output['data'], key=itemgetter('Average_Grade'))
+				elif input['Sort_By'] == 'NUMBER_DESC':
+					output['data'] = sorted(output['data'], key=itemgetter('course_comb'),reverse=True)
+				elif input['Sort_By'] == 'NUMBER_ASC':
+					output['data'] = sorted(output['data'], key=itemgetter('course_comb'))
+		
 			else:
 				output['status'] = "Failure: Course Not Found"
 			#print(output['data'])
-		return render(request, 'frontendTemplates/account/sqlsearchcomplete.html', {'data':output['data']})
+		return render(request, 'frontendTemplates/account/course-search-complete.html', {'data':output['data']})
 	return JsonResponse(output)
 
 @login_required(login_url='home-login')
