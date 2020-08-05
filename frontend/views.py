@@ -66,8 +66,9 @@ def update_user(request):
 	output['data'] = None
 	if request.method == 'POST':
 		input = {}
+		print(request.POST)
 		input['Target_GPA'] = request.POST['Target_GPA']
-		input['major'] = request.Post['major']
+		input['major'] = request.POST['major']
 
 		result = {}
 		with connection.cursor() as cursor:
@@ -83,7 +84,7 @@ def update_user(request):
 				output['status'] = "Success: Entries Updated"
 			else:
 				output['status'] = "Failure: Email not found"
-	return JsonResponse(output)
+		return JsonResponse(output)
 
 def get_user_info(request):
 	output = {}
@@ -92,7 +93,7 @@ def get_user_info(request):
 	if request.method == 'GET':
 		input = {}
 		input['email_Id'] = request.user.get_username()
-		print(request.user)
+		#print(request.user)
 		result = {}
 		with connection.cursor() as cursor:
 			cursor.execute("SELECT m.email_Id, u.first_name, u.last_name, m.Major_Taken, m.Major_Percentile, m.Gened_Percentile, m.Current_GPA, m.Hours_Completed, m.Target_GPA FROM user_customuser u Left Outer Join Student_MISC m on (u.username = m.email_Id) Where m.email_Id = %s;",[input['email_Id']])

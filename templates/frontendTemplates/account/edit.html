@@ -22,14 +22,14 @@
 {% endif %}
 
 
-        <form action="{% url 'account-update' %}" id="editForm" class="form-account form" method="post">
+        <form id="editForm" class="form-account form" method="post">
 
         	{% csrf_token %}
 
             <div class="form-group">
                 <label for="inputState__">Target GPA</label>
                 <div class="form-input-bg">
-                    <input type="text" name="targe_gpa" class="form-control" id="targe_gpa" >
+                    <input type="text" name="targe_gpa" class="form-control" id="target_gpa" >
                 </div>
             </div>
 
@@ -41,12 +41,33 @@
                 </div>
             </div>
             <div class="text-right">
-                <button type="submit" class="button">Update</button>
+                <button type="submit" class="button" onclick="update_User()">Update</button>
 
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    window.onload = function(){
+        var values = {};
+        $.get("/get-user-info/",
+        function(data, status){
+            document.getElementById("major").value = data['data']['major']
+            document.getElementById("target_gpa").value = data['data']['target_gpa']
+        });
+    };
+
+    function update_User() {
+        var values = {};
+        values['Target_GPA'] = document.getElementById("target_gpa").value;
+        values['major'] = document.getElementById("major").value;
+        $.post("/update-user/",
+        values,
+        function(data, status){
+            window.location.href = "/account/";
+        });
+    }
+</script>
 
 {% endblock %}
