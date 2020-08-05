@@ -17,4 +17,5 @@ urlpatterns = [
     path('course-search', views.course_search, name='account-course-search'),
     path('search-course',  views.search_course,name='search-course-post'),
     path('course-insert', views.course_insert, name='account-course-insert'),
+    path('prof-modal', views.prof_modal, name='prof-modal-post')
 ]
