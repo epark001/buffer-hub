@@ -10,4 +10,6 @@ urlpatterns = [
     path('sql-search-look', views.searchRequest, name='account-sql-search-look'),
     path('update-password', views.update_pass, name='account-update-pass'),
     path('change-profile-pic', views.profile_pic, name='account-profile-pic'),
+    path('course-search', views.course_search, name='account-course-search'),
+
 ]
