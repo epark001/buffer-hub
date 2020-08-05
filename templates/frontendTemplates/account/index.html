@@ -22,32 +22,61 @@
 
 
         <form id="editForm" class="form-account form">
-
             <div class="form-group">
-                <label for="inputState__">Account Name</label>
+                <label for="inputState__">First Name</label>
                 <div class="form-input-bg">
-                    <input type="text" class="form-control" id="email_Id" value="{{usr.name}}" readonly>
+                    <input type="text" class="form-control" id="first_name" readonly>
+                </div>
+            </div>
+            <form id="editForm" class="form-account form">
+                <div class="form-group">
+                    <label for="inputState__">Last Name</label>
+                    <div class="form-input-bg">
+                        <input type="text" class="form-control" id="last_name" readonly>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="inputState__">UserName</label>
+                <div class="form-input-bg">
+                    <input type="text" class="form-control" id="email_Id" readonly>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputEmail4">Email</label>
+                <label for="inputEmail4">Major</label>
                 <div class="form-input-bg">
-                    <input type="text" class="form-control" id="inputEmail4" value="{{usr.email}}" readonly>
+                    <input type="text" class="form-control" id="major" readonly>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="inputState__">Gender</label>
+                <label for="inputState__">Major Percentile</label>
                 <div class="form-input-bg">
-                    <input type="text" class="form-control" id="inputEmail4" value="{{usr.usr_gender}}" readonly>
+                    <input type="text" class="form-control" id="major_percentile"  readonly>
                 </div>
             </div>
-
             <div class="form-group">
-                <label for="inputPassword4">Mobile</label>
+                <label for="inputState__">Hours Completed</label>
                 <div class="form-input-bg">
-                    <input type="text" class="form-control" id="inputPassword4" value="{{usr.usr_phone}}" readonly>
+                    <input type="text" class="form-control" id="hours_completed"  readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword4">Target GPA</label>
+                <div class="form-input-bg">
+                    <input type="text" class="form-control" id="target_gpa" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword4">Gen-Ed Percentile</label>
+                <div class="form-input-bg">
+                    <input type="text" class="form-control" id="gen_ed_percentile" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword4">Current GPA</label>
+                <div class="form-input-bg">
+                    <input type="text" class="form-control" id="current_gpa" readonly>
                 </div>
             </div>
         </form>
@@ -59,6 +88,18 @@
         $.get("/get-user-info/",
         function(data, status){
             document.getElementById("email_Id").value = data['data']['email_Id']
+            document.getElementById("current_gpa").value = data['data']['current_gpa']
+            document.getElementById("first_name").value = data['data']['first_name']
+            document.getElementById("last_name").value = data['data']['last_name']
+            document.getElementById("gen_ed_percentile").value = data['data']['gen_ed_percentile']
+            document.getElementById("hours_completed").value = data['data']['hours_completed']
+            document.getElementById("major").value = data['data']['major']
+            document.getElementById("major_percentile").value = data['data']['major_percentile']
+            document.getElementById("target_gpa").value = data['data']['target_gpa']
+
+
+
+            console.log(data)
         });
     };
 </script>
