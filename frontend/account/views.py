@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import login as auth_login
 from admin.user.models import CustomUser
 from admin.gen_ed.models import GenEd
+from django.db import connection
 
 import re
 import json
@@ -59,11 +60,22 @@ def sqlsearch(request):
 @login_required(login_url='home-login')
 def searchRequest(request):
 	if request.method == 'POST':
-		gen_ed = request.POST['gened']
-		str = """ SELECT * FROM Gen_ED WHERE ACP='ACP' """
-		data = GenEd.objects.raw(str)
-		print (type(data))
-		return render(request, 'frontendTemplates/account/sqlsearchcomplete.html', {'data':data})
+		gen_ed = request.POST['gened'].upper()
+		#data = GenEd.objects.raw('''SELECT * FROM Gen_ED Natural Join WHERE ''' + gen_ed + ''' <> "" ''')
+		results = None
+		with connection.cursor() as cursor:
+			cursor.execute('''SELECT gen.Course, gen.Course_Title, avg(gpa.Average_Grade) as avg_grade FROM Gen_ED gen Inner Join GPA_TABLE gpa ON (gen.Course_Comb = gpa.Course_Comb) Where '''+gen_ed +'''<> "" Group By gen.Course_Comb Order By avg_grade DESC''')
+			result = list(cursor.fetchall())
+		output = []
+		for row in result:
+			temp = {}
+			print(row)
+			temp['course_comb'] = row[0]
+			temp['course_title'] = row[1]
+			temp['average_grade'] = round(row[2],2)
+			output.append(temp)
+		#print(output)
+		return render(request, 'frontendTemplates/account/sqlsearchcomplete.html', {'data':output})
 	return redirect('home-login')
 
 @login_required(login_url='home-login')
