@@ -73,7 +73,7 @@ def save_user(request):
         course_comb_val = request.POST['class_selection']
         letter_grade_val = request.POST['letter_grade']
         gpa_hours_val = request.POST['gpa_hours']
-        gpa_quality_points_val = int(gpa_hours_val) * dict_grade[letter_grade_val]
+        gpa_quality_points_val = int(gpa_hours_val) * float(dict_grade[letter_grade_val])
         primary_instructor_val = request.POST['primary_instructor']
 
         sct = StudentCourseTable(email_id=email_val, field_id=field_id_val,course_comb=course_comb_val, letter_grade=letter_grade_val, gpa_hours =gpa_hours_val, gpa_quality_points=gpa_quality_points_val,primary_instructor=primary_instructor_val)
@@ -88,7 +88,7 @@ def delete(request, id):
 
     if request.method == 'GET':
         print(id)
-        sct = StudentCourseTable.objects.get(field_id=id)
+        sct = StudentCourseTable.objects.filter(field_id=id)
         print(sct)
         if not sct:
             messages.error(request, 'No such records found!')
