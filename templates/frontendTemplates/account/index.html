@@ -5,8 +5,7 @@
 
 {% block main-content %}
 
-
-
+{% if user.is_authenticated %}
 <div class="col-9">
     <div class="section-content">
         <h3>Account Overview</h3>
@@ -27,7 +26,7 @@
             <div class="form-group">
                 <label for="inputState__">Account Name</label>
                 <div class="form-input-bg">
-                    <input type="text" class="form-control" id="inputEmail4" value="{{usr.name}}" readonly>
+                    <input type="text" class="form-control" id="email_Id" value="{{usr.name}}" readonly>
                 </div>
             </div>
 
@@ -51,12 +50,19 @@
                     <input type="text" class="form-control" id="inputPassword4" value="{{usr.usr_phone}}" readonly>
                 </div>
             </div>
-            <div class="text-right">
-                <button type="button" onclick="location.href = '{% url 'account-edit' %}'" class="button">Edit Profile</button>
-            </div>
         </form>
     </div>
 </div>
+<script>
+    window.onload = function(){
+        var values = {};
+        $.get("/get-user-info/",
+        function(data, status){
+            document.getElementById("email_Id").value = data['data']['email_Id']
+        });
+    };
+</script>
 
+{% endif %}
 
 {% endblock %}
