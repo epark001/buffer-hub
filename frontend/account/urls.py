@@ -12,5 +12,6 @@ urlpatterns = [
     path('change-profile-pic', views.profile_pic, name='account-profile-pic'),
     path('course-search', views.course_search, name='account-course-search'),
     path('search-course',  views.search_course,name='search-course-post')
+    path('course-insert', views.course_insert, name='account-course-insert'),
 
 ]
