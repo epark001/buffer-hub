@@ -56,6 +56,44 @@ def sqlsearch(request):
 
 	return render(request, 'frontendTemplates/account/sqlsearch.html', {'usr':usr})
 
+@login_required(login_url='home-login')
+def profsearch(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
+
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/profsearch.html', {'usr':usr})
+
+@login_required(login_url='home-login')
+def sqlsearchProf(request):
+	if request.method == 'POST':
+		fname = request.POST['firstname']
+		lname = request.POST['lastname']
+		#data = GenEd.objects.raw('''SELECT * FROM uiucprofs WHERE tFname EQUALS''' + firstname + ''' + ''' OR ''' + ''' + tLname EQUALS ''' + lastname + ''' + ''' )
+		results = None
+		with connection.cursor() as cursor:
+			cursor.execute("SELECT * FROM uiucprofs WHERE tFname =%s OR tLname=%s", (fname, lname))
+			result = list(cursor.fetchall())
+		output = []
+		for row in result:
+			temp = {}
+			print(row)
+			temp['dept'] = row[0]
+			temp['firstname'] = row[3]
+			temp['lastname'] = row[5]
+			temp['numratings'] = row[7]
+			temp['rating'] = row[8]
+			temp['overallrating'] = row[11]
+			  	
+			output.append(temp)
+		#print(output)
+		return render(request, 'frontendTemplates/account/profsqlsearchcomplete.html', {'data':output})
+	return redirect('home-login')
 
 @login_required(login_url='home-login')
 def searchRequest(request):
