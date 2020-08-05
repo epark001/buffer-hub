@@ -9,6 +9,22 @@
   margin: 0;
   padding: 0;
 }
+.button-webPlay {
+  text-transform: uppercase;
+  font-size: 1rem;
+  color: #212325;
+  font-weight: 500;
+  min-width: 300px;
+  padding: 0.75rem 2rem;
+  border: 2px solid #212325;
+  border-radius: 100px;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 3px;
+}
+.button-webPlay:hover {
+  background: #212325;
+  color: #fff;
+}
 #search-div
 {
   position: relative;

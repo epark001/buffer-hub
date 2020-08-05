@@ -6,6 +6,9 @@
 {% block main-content %}
 
 <link rel="stylesheet" href="main.css">
+{% load static %}
+
+<script src="{% static 'hide_funct.js' %}"></script>   
 
 
 <div class="col-9">
@@ -200,25 +203,32 @@
                 </div>
 
             </div>
-            <label class="button_container">100-199
-                <input type="radio" checked="checked" name="radio">
-                <span class="checkmark"></span>
-              </label>
-              <label class="button_container">200-299
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
-              </label>
-              <label class="button_container">300-399
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
-              </label>
-              <label class="button_container">400-499
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
-              </label>
-            <div class="text-right">
-                <button type="submit" class="button">Search</button>
-            </div>
+            <form name="myform">
+                <table>
+                <tr>
+                <td>
+                <select name="one"  class="form-control" onchange="if (this.value!='other'){this.form['other'].style.visibility='visible'}else {this.form['other'].style.visibility='hidden'};">
+                <option value="" selected="selected">Select...</option>
+                <option value="1">Range</option>
+                
+                
+                <option value="other">Single</option>
+                </select>
+                <div class="form-input-bg">
+
+                <input type="text" name="name" class="form-control" id="inputEmail4">
+                </div>
+                <div class="form-input-bg">
+
+                <input type="text" style="visibility:hidden"  name="other" class="form-control" id="inputEmail4">
+            </div>    
+            </td>
+                </tr>
+                </table>
+                </form>
+                <div class="text-right">
+                    <button type="submit" class="button">Search</button>
+                    </div>
         </form>
     </div>
 </div>
