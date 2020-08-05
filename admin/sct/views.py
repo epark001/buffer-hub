@@ -86,15 +86,15 @@ def save_user(request):
 @login_required(login_url='login')
 def delete(request, id):
 
-	if request.method == 'GET':
+    if request.method == 'GET':
+        print(id)
+        sct = StudentCourseTable.objects.get(field_id=id)
+        print(sct)
+        if not sct:
+            messages.error(request, 'No such records found!')
+            return redirect('sct-index-user')
+        else:
+            sct = sct.delete()
+            messages.success(request, 'Record Deleted!')
 
-		sct = StudentCourseTable.objects.filter(pk=id)
-
-		if not sct:
-			messages.error(request, 'No such records found!')
-			return redirect('sct-index-user')
-		else:
-			sct = sct.delete()
-			messages.success(request, 'Record Deleted!')
-
-		return redirect('sct-index-user')
+        return redirect('sct-index-user')

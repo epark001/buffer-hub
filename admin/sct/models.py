@@ -1,8 +1,8 @@
 from django.db import models
-
+import uuid
 # Create your models here.
 class StudentCourseTable(models.Model):
-    field_id = models.CharField(db_column='_id', primary_key=True, max_length=255)  # Field renamed because it started with '_'.
+    field_id = models.UUIDField(db_column='_id',default=uuid.uuid4, primary_key=True, max_length=255)  # Field renamed because it started with '_'.
     email_id = models.CharField(db_column='email_Id', max_length=120)  # Field name made lowercase.
     course_comb = models.CharField(db_column='Course_Comb', max_length=300)  # Field name made lowercase.
     letter_grade = models.CharField(db_column='Letter_Grade', max_length=300)  # Field name made lowercase.

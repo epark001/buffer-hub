@@ -58,7 +58,7 @@
                                 <td bgcolor="#E84A27">{{ row.letter_grade }}</td>
                                 <td bgcolor="#13294b"><a href=""><span class="badge badge-info">Edit</span></a>
                                     &nbsp;&nbsp;
-                                    <a href="{% url 'sct-delete' id=row.id %}"><span class="badge badge-danger">Delete</span></a></td>
+                                    <a href="{% url 'sct-delete' id=row.field_id %}"><span class="badge badge-danger">Delete</span></a></td>
                                 </tr>
 
 							{% endfor %}
