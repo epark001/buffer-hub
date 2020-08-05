@@ -36,6 +36,78 @@ def index(request):
 
 	return render(request, 'frontendTemplates/home/index.html', {'data':data})
 
+def template(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		input['email_Id'] = request.POST['email_Id']
+		
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute("%s",[input['email_Id']])
+			temp = cursor.fetchone()
+			if temp:
+				temp = list(temp)
+				result['email_Id'] = temp[0]
+				output['data'] = result
+				output['status'] = "Success"
+			else:
+				output['status'] = "Failure: Email not found"
+	return JsonResponse(output)
+
+def update_user(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		input['email_Id'] = request.POST['email_Id']
+		input['Target_GPA gpa'] = request.POST['Target_GPA']
+		input['major'] = request.Post['major']
+
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute("%s",[input['email_Id']])
+			temp = cursor.fetchone()
+			if temp:
+				temp = list(temp)
+				result['email_Id'] = temp[0]
+				output['data'] = result
+				output['status'] = "Success"
+			else:
+				output['status'] = "Failure: Email not found"
+	return JsonResponse(output)
+
+def get_user(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		input['email_Id'] = request.POST['email_Id']
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute("SELECT m.email_Id, u.first_name, u.last_name, m.Major_Taken, m.Major_Percentile, m.Gened_Percentile, m.Current_GPA, m.Hours_Completed, m.Target_GPA FROM user_customuser u Left Outer Join Student_MISC m on (u.username = m.email_Id) Where m.email_Id = %s;",[input['email_Id']])
+			temp = cursor.fetchone()
+			if temp:
+				temp = list(temp)
+				result['email_Id'] = temp[0]
+				result['first_name'] = temp[1]
+				result['last_name'] = temp[2]
+				result['major'] = temp[3]
+				result['major_percentile'] = temp[4]
+				result['gened_percentile'] = temp[5]
+				result['current_gpa'] = temp[6]
+				result['hours_completed'] = temp[7]
+				result['target_gpa'] = temp[8]
+				output['data'] = result
+				output['status'] = "Success"
+			else:
+				output['status'] = "Failure: Email not found"
+	return JsonResponse(output)
+
 def demo_insert(request):
 	if request.method == 'POST':
 		info = {}
