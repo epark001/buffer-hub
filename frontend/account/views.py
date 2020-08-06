@@ -50,8 +50,6 @@ def grad_req_calc(request):
 	output['data'] = None
 	input = {}
 	input['email_Id'] = request.user.get_username()
-	
-	
 	with connection.cursor() as cursor:
 		cursor.execute("Select * From Grad_Reqs Where email_Id = %s",[input['email_Id']])
 		temp = cursor.fetchall()
@@ -68,10 +66,56 @@ def grad_req_calc(request):
 				result['Upper_Num'] = x[7]
 				output['data'].append(result)
 			#print(output['data'])
+			output['result'] = []
+			for req in output['data']:
+				# if req['Subject'] != "major" or req['Subject'] != "other":
+				#query for gened until hours fufiled
+				print(type(req['Subject']))
+				print(req['Subject'])
+				# if req['Range_Sel'] == "Single":
+				# 	#single class search
+				cursor.execute("SELECT gen.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor From Gen_ED gen Inner Join GPA_TABLE gpa ON (gen.Course_Comb = gpa.Course_Comb) Where gen."+req['Subject']+" <> \"\" and gpa.Number = "+req['Lower_Num']+" Group By gen.Course_Comb Order By avg_grade DESC")
+				# 	else:
+				# 		#do range search
+				# 		cursor.execute('''
+				# 		SELECT gen.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor
+				# 		From Gen_ED gen Inner Join GPA_TABLE gpa ON (gen.Course_Comb = gpa.Course_Comb)
+				# 		Where gen.%s <> "" and gpa.Number >= %s and gpa.Number <= %s
+				# 		Group By gen.Course_Comb 
+				# 		Order By avg_grade DESC
+				# 		''',[req['Subject'],req['Lower_Num'], req['Upper_Num']])
+				# else:
+				# 	#find courses within subject and range specified
+				# 	if req['Range_Sel'] == "Single":
+				# 		#single class search
+				# 		cursor.execute('''
+				# 		SELECT gpa.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor
+				# 		From GPA_TABLE gpa
+				# 		Where gen.%s <> "" and gpa.Number = %s
+				# 		Group By gen.Course_Comb 
+				# 		Order By avg_grade DESC
+				# 		''',[req['Subject'],req['Lower_Num']])
+				# 	else:
+				# 		#do range search
+				# 		cursor.execute('''
+				# 		SELECT gpa.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor
+				# 		From GPA_TABLE gpa
+				# 		Where gen.%s <> "" and gpa.Number >= %s and gpa.Numver <= %s
+				# 		Group By gen.Course_Comb 
+				# 		Order By avg_grade DESC
+				# 		''',[req['Subject'],req['Lower_Num'], req['Upper_Num']])
+				temp = None
+				temp = cursor.fetchone()
+				if fetch:
+					temp1 = {}
+					temp1['Course_Comb'] = temp[0]
+					temp1['Average_Grade'] = temp[1]
+					temp1['Primary_Instructor'] = temp[2]
+					output['result'].append(temp1)
 			output['status'] = "Success"
 		else:
 			output['status'] = "Failure: Email not found"
-	return render(request, 'frontendTemplates/account/grad-req-complete.html', {'data':output['data']})
+	return render(request, 'frontendTemplates/account/grad-req-calc.html', {'data':output['data']})
 
 def grad_req_show(request):
 	output = {}
