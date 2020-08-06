@@ -10,6 +10,7 @@ from admin.gen_ed.models import GenEd
 from django.db import connection
 from operator import itemgetter
 from django.http import JsonResponse
+import uuid
 
 
 import re
@@ -43,6 +44,94 @@ def about_page(request):
 
 	return render(request, 'frontendTemplates/account/about.html', {'usr':usr})
 
+def grad_req_calc(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	input = {}
+	input['email_Id'] = request.user.get_username()
+	
+	
+	with connection.cursor() as cursor:
+		cursor.execute("Select * From Grad_Reqs Where email_Id = %s",[input['email_Id']])
+		temp = cursor.fetchall()
+		if temp:
+			temp = list(temp)
+			output['data'] = []
+			for x in temp:
+				result = {}
+				result['Subject'] = x[2]
+				result['Course_Type'] = x[3]
+				result['Hours_Needed'] = x[4]
+				result['Range_Sel'] = x[5]
+				result['Lower_Num'] = x[6]
+				result['Upper_Num'] = x[7]
+				output['data'].append(result)
+			#print(output['data'])
+			output['status'] = "Success"
+		else:
+			output['status'] = "Failure: Email not found"
+	return render(request, 'frontendTemplates/account/grad-req-complete.html', {'data':output['data']})
+
+def grad_req_show(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	input = {}
+	input['email_Id'] = request.user.get_username()
+	
+	
+	with connection.cursor() as cursor:
+		cursor.execute("Select * From Grad_Reqs Where email_Id = %s",[input['email_Id']])
+		temp = cursor.fetchall()
+		if temp:
+			temp = list(temp)
+			output['data'] = []
+			for x in temp:
+				result = {}
+				result['Subject'] = x[2]
+				result['Course_Type'] = x[3]
+				result['Hours_Needed'] = x[4]
+				result['Range_Sel'] = x[5]
+				result['Lower_Num'] = x[6]
+				result['Upper_Num'] = x[7]
+				output['data'].append(result)
+			#print(output['data'])
+			output['status'] = "Success"
+		else:
+			output['status'] = "Failure: Email not found"
+	return render(request, 'frontendTemplates/account/grad-req-complete.html', {'data':output['data']})
+
+def grad_req_insert(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		#print(request.POST)
+		input['_id'] = str(uuid.uuid1())
+		input['email_Id'] = request.user.get_username()
+		input['Subject'] = request.POST['subject']
+		input['type'] = request.POST['type']
+		input['Hours_Needed'] =  request.POST['hours_needed']
+		input['Range_Sel'] = request.POST['one']
+		input['Lower_Num'] = request.POST['first_number']
+		input['Upper_Num'] = request.POST['Single']
+		#print(input)
+		
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute('''
+			Insert Into Grad_Reqs(_id, email_Id, Subject, Course_Type, Hours_Needed, Range_Sel, Lower_Num, Upper_Num)
+			Values (%s, %s, %s, %s, %s, %s, %s, %s)
+			''',[input['_id'],input['email_Id'], input['Subject'], input['type'], input['Hours_Needed'], input['Range_Sel'], input['Lower_Num'], input['Upper_Num']])
+			temp = cursor.fetchone()
+			#temp = list(temp)
+			#print(temp)
+			#output['data'] = temp
+			output['status'] = "Success"
+		return redirect('/account/grad-req-show')
+	return JsonResponse(output)
 
 @login_required(login_url='home-login')
 def edit(request):

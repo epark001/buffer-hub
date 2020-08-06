@@ -22,14 +22,32 @@
 {% endif %}
 
 
-        <form action="{% url 'add-grad-course-post' %}" id="editForm" class="form-account form" method="post">
+        <form action="{% url 'grad-req-insert-post' %}" id="editForm" class="form-account form" method="post">
 
-        	{% csrf_token %}
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="inputState__">Type</label>
+                <div class="form-input-bg">
+                        <select id="type" class="form-control" name="type" onchange="type_change()">
+                                <option value="major">MAJOR</option>
+                                <option value="acp">ACP</option>
+                                <option value="cs">CS</option>
+                                <option value="hum">HUM</option>
+                                <option value="nat">NAT</option>
+                                <option value="qr">QR</option>
+                                <option value="sbs">SBS</option>
+                                <option value="other">Other</option>
+                            </select>
+                </div>
+            </div>
+            
 
             <div class="form-group">
                 <label for="inputState__">Subject</label>
                 <div class="form-input-bg">
                         <select id="subject"  class="form-control" name="subject">
+                            <option value="All">All</option>
                             <option value="AAS">AAS</option>
                             <option value="ABE">ABE</option>
                             <option value="ACCY">ACCY</option>
@@ -198,20 +216,7 @@
 
 
 
-            <div class="form-group">
-                <label for="inputState__">Type</label>
-                <div class="form-input-bg">
-                        <select id="type" class="form-control" name="type">
-                                <option value="acp">ACP</option>
-                                <option value="cs">CS</option>
-                                <option value="hum">HUM</option>
-                                <option value="nat">NAT</option>
-                                <option value="qr">QR</option>
-                                <option value="sbs">SBS</option>
-                                <option value="sbs">MAJOR</option>
-                            </select>
-                </div>
-            </div>
+            
             <div class="form-group">
                 <label for="gpa_wanted_insert">Hours Needed in Category</label>
                 <div class="form-input-bg">
@@ -223,7 +228,7 @@
                 <tr>
                 <td>
                     <div class="form-input-bg">
-                <select name="one" id="range_selector" class="form-control" onchange="if (this.value!='Single'){this.form['Single'].style.visibility='visible'}else {this.form['Single'].style.visibility='hidden'};">
+                <select name="one" id="range_selector" class="form-control" onchange="if (this.value!='Single'){this.form['Single'].style.visibility='visible'}else {this.form['Single'].style.visibility  ='hidden'};">
                     <option value="Single"selected="selected">Single</option>
                     <option value="Range" >Range</option>
                 </select>
@@ -239,13 +244,26 @@
                 </table>
             
             <div class="text-right">
-                <button type="submit" class="button">Update</button>
+                <button type="submit" class="button"  onclick="location.href = '{% url 'grad-req-insert-post' %}'">Insert Requirement</button>
 
-                <button type="button" onclick="location.href = '{% url 'graduation-reqs-forms' %}'" class="button">Dismiss</button>
+                <button type="button" onclick="location.href = '{% url 'grad-req-show-get' %}'" class="button">View Requirements</button>
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    function type_change() {
+        var type_val = document.getElementById("type").value;
+        if(type_val=="major") {
+            document.getElementById("subject").disabled = false;
+        } else if (type_val=="other") {
+            document.getElementById("subject").disabled = false;
+        } else {
+            document.getElementById("subject").value = "All";
+            document.getElementById("subject").disabled = true;
+        }
+    }
+</script>
 
 {% endblock %}

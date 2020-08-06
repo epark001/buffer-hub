@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width ,  initial-scale=1.0" name="viewport">
+    <!-- CSS Libraries -->
+    <link href='{% static "./css/bootstrap.min.css" %}' rel="stylesheet">
+
+    <link href='{% static "./css/fontawesome.all.min.css" %}' rel="stylesheet">
+
+    <link href='{% static "./css/main.css" %}' rel="stylesheet">
+    <title>
+        {% block title %} buffer_hub | Account {% endblock %}
+    </title>
+</head>
+<body>
+    {% include "frontendTemplates/layouts/navbar-account.html" %}
+
+
+{% block main-section %}
+
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+            <button type="button" onclick="location.href = '{% url 'grad-req-calc-post' %}'" class="button">Calculate Classes</button>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-12 text-center">
+						<div class="main-section">
+							<h2 class="content-heading">Graduation Requirements</h2>
+                        
+
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Course Type</th>
+                                <th scope="col">Hours Needed</th>
+                                <th scope="col">Number Selection</th>
+                                <th scope="col">Lower Bound</th>
+                                <th scope="col">Upper Bound</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for row in data %}
+                            <script>
+                                console.log(row)
+                            </script>
+                                <tr>
+                                <td bgcolor="#E84A27">{{ row.Subject }}</td>
+                                <td bgcolor="#13294b">{{ row.Course_Type }}</td>
+                                <td bgcolor="#E84A27">{{ row.Hours_Needed }}</td>
+                                <td bgcolor="#13294b">{{ row.Range_Sel }}</td>
+                                <td bgcolor="#E84A27">{{ row.Lower_Num }}</td>
+                                <td bgcolor="#13294b">{{ row.Upper_Num }}</td>
+                                </tr>
+
+							{% endfor %}
+
+                            </tbody>
+                            </table>
+
+							
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+{% endblock %}
+</body>
