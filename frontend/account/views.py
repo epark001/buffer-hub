@@ -10,6 +10,7 @@ from admin.gen_ed.models import GenEd
 from django.db import connection
 from operator import itemgetter
 from django.http import JsonResponse
+import uuid
 
 
 import re
@@ -43,6 +44,138 @@ def about_page(request):
 
 	return render(request, 'frontendTemplates/account/about.html', {'usr':usr})
 
+def grad_req_calc(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	input = {}
+	input['email_Id'] = request.user.get_username()
+	with connection.cursor() as cursor:
+		cursor.execute("Select * From Grad_Reqs Where email_Id = %s",[input['email_Id']])
+		temp = cursor.fetchall()
+		if temp:
+			temp = list(temp)
+			output['data'] = []
+			for x in temp:
+				result = {}
+				result['Subject'] = x[2]
+				result['Course_Type'] = x[3]
+				result['Hours_Needed'] = x[4]
+				result['Range_Sel'] = x[5]
+				result['Lower_Num'] = x[6]
+				result['Upper_Num'] = x[7]
+				output['data'].append(result)
+			#print(output['data'])
+			output['result'] = []
+			for req in output['data']:
+				# if req['Subject'] != "major" or req['Subject'] != "other":
+				#query for gened until hours fufiled
+				print(type(req['Subject']))
+				print(req['Subject'])
+				# if req['Range_Sel'] == "Single":
+				# 	#single class search
+				cursor.execute("SELECT gen.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor From Gen_ED gen Inner Join GPA_TABLE gpa ON (gen.Course_Comb = gpa.Course_Comb) Where gen."+req['Subject']+" <> \"\" and gpa.Number = "+req['Lower_Num']+" Group By gen.Course_Comb Order By avg_grade DESC")
+				# 	else:
+				# 		#do range search
+				# 		cursor.execute('''
+				# 		SELECT gen.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor
+				# 		From Gen_ED gen Inner Join GPA_TABLE gpa ON (gen.Course_Comb = gpa.Course_Comb)
+				# 		Where gen.%s <> "" and gpa.Number >= %s and gpa.Number <= %s
+				# 		Group By gen.Course_Comb 
+				# 		Order By avg_grade DESC
+				# 		''',[req['Subject'],req['Lower_Num'], req['Upper_Num']])
+				# else:
+				# 	#find courses within subject and range specified
+				# 	if req['Range_Sel'] == "Single":
+				# 		#single class search
+				# 		cursor.execute('''
+				# 		SELECT gpa.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor
+				# 		From GPA_TABLE gpa
+				# 		Where gen.%s <> "" and gpa.Number = %s
+				# 		Group By gen.Course_Comb 
+				# 		Order By avg_grade DESC
+				# 		''',[req['Subject'],req['Lower_Num']])
+				# 	else:
+				# 		#do range search
+				# 		cursor.execute('''
+				# 		SELECT gpa.Course_Comb, avg(gpa.Average_Grade) as avg_grade, gpa.Primary_Instructor
+				# 		From GPA_TABLE gpa
+				# 		Where gen.%s <> "" and gpa.Number >= %s and gpa.Numver <= %s
+				# 		Group By gen.Course_Comb 
+				# 		Order By avg_grade DESC
+				# 		''',[req['Subject'],req['Lower_Num'], req['Upper_Num']])
+				temp = None
+				temp = cursor.fetchone()
+				if fetch:
+					temp1 = {}
+					temp1['Course_Comb'] = temp[0]
+					temp1['Average_Grade'] = temp[1]
+					temp1['Primary_Instructor'] = temp[2]
+					output['result'].append(temp1)
+			output['status'] = "Success"
+		else:
+			output['status'] = "Failure: Email not found"
+	return render(request, 'frontendTemplates/account/grad-req-calc.html', {'data':output['data']})
+
+def grad_req_show(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	input = {}
+	input['email_Id'] = request.user.get_username()
+	
+	
+	with connection.cursor() as cursor:
+		cursor.execute("Select * From Grad_Reqs Where email_Id = %s",[input['email_Id']])
+		temp = cursor.fetchall()
+		if temp:
+			temp = list(temp)
+			output['data'] = []
+			for x in temp:
+				result = {}
+				result['Subject'] = x[2]
+				result['Course_Type'] = x[3]
+				result['Hours_Needed'] = x[4]
+				result['Range_Sel'] = x[5]
+				result['Lower_Num'] = x[6]
+				result['Upper_Num'] = x[7]
+				output['data'].append(result)
+			#print(output['data'])
+			output['status'] = "Success"
+		else:
+			output['status'] = "Failure: Email not found"
+	return render(request, 'frontendTemplates/account/grad-req-complete.html', {'data':output['data']})
+
+def grad_req_insert(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		#print(request.POST)
+		input['_id'] = str(uuid.uuid1())
+		input['email_Id'] = request.user.get_username()
+		input['Subject'] = request.POST['subject']
+		input['type'] = request.POST['type']
+		input['Hours_Needed'] =  request.POST['hours_needed']
+		input['Range_Sel'] = request.POST['one']
+		input['Lower_Num'] = request.POST['first_number']
+		input['Upper_Num'] = request.POST['Single']
+		#print(input)
+		
+		result = {}
+		with connection.cursor() as cursor:
+			cursor.execute('''
+			Insert Into Grad_Reqs(_id, email_Id, Subject, Course_Type, Hours_Needed, Range_Sel, Lower_Num, Upper_Num)
+			Values (%s, %s, %s, %s, %s, %s, %s, %s)
+			''',[input['_id'],input['email_Id'], input['Subject'], input['type'], input['Hours_Needed'], input['Range_Sel'], input['Lower_Num'], input['Upper_Num']])
+			temp = cursor.fetchone()
+			#temp = list(temp)
+			#print(temp)
+			#output['data'] = temp
+			output['status'] = "Success"
+		return redirect('/account/grad-req-show')
+	return JsonResponse(output)
 
 @login_required(login_url='home-login')
 def edit(request):
@@ -167,7 +300,80 @@ def course_search(request):
 		usr = usr.get()
 
 	return render(request, 'frontendTemplates/account/course-search.html', {'usr':usr})
+@login_required(login_url='home-login')
+def grad_reqs(request):
+	
+	usr = CustomUser.objects.filter(pk=request.user.id)
 
+	if not usr:
+		messages.error(request, 'Log In First!')
+		return redirect('home-login')
+	else:
+		usr = usr.get()
+
+	return render(request, 'frontendTemplates/account/graduation-requirements.html', {'usr':usr})
+
+def grad_course(request):
+	output = {}
+	output['status'] = "Failure"
+	output['data'] = None
+	if request.method == 'POST':
+		input = {}
+		# print(request.POST)
+		input['Subject'] = request.POST['subject']
+		input['range_Sel'] = request.POST['one']
+		input['GPA_GTE'] = request.POST['gpa_wanted']
+		input['Sort_By'] = request.POST['order_by_selection']
+		input['num_lower'] = request.POST['first_number']
+		input['num_upper'] = request.POST['Single']
+		
+		#print(input['Sort_By'])
+		
+		#print(input['Order_By'])
+		with connection.cursor() as cursor:
+			if input['range_Sel'] == 'Single':
+				cursor.execute('''
+				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
+				FROM GPA_TABLE
+				Where Subject = %s and 
+				number = %s and
+				Average_Grade >= %s;
+				''',[input['Subject'], input['num_lower'], input['GPA_GTE']])
+			else:
+				cursor.execute('''
+				SELECT Course_Comb, Average_Grade, Primary_Instructor, Number
+				FROM GPA_TABLE
+				Where Subject = %s and 
+				number >= %s and
+				number <= %s and
+				Average_Grade >= %s;
+				''',[input['Subject'], input['num_lower'], input['num_upper'], input['GPA_GTE']])
+			temp = cursor.fetchall()
+			if temp:
+				temp = list(temp)
+				output['data'] = []
+				for x in temp:
+					result = {}
+					result['course_comb'] = x[0]
+					result['Average_Grade'] = x[1]
+					result['Primary_Instructor'] = x[2]
+					#print(result)
+					output['data'].append(result)
+					output['status'] = "Success"
+				if input['Sort_By'] == 'AVG_GPA_DESC':
+					output['data'] = sorted(output['data'], key=itemgetter('Average_Grade'),reverse=True)
+				elif input['Sort_By'] == 'AVG_GPA_ASC':
+					output['data'] = sorted(output['data'], key=itemgetter('Average_Grade'))
+				elif input['Sort_By'] == 'NUMBER_DESC':
+					output['data'] = sorted(output['data'], key=itemgetter('course_comb'),reverse=True)
+				elif input['Sort_By'] == 'NUMBER_ASC':
+					output['data'] = sorted(output['data'], key=itemgetter('course_comb'))
+		
+			else:
+				output['status'] = "Failure: Course Not Found"
+			#print(output['data'])
+		return render(request, 'frontendTemplates/account/course-search-complete.html', {'data':output['data']})
+	return JsonResponse(output)
 
 def search_course(request):
 	output = {}
