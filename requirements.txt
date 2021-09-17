@@ -8,7 +8,7 @@ django-globals==0.3.2
 django-heroku==0.3.1
 django-rest-framework==0.1.0
 django-storages==1.9.1
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 gunicorn==20.0.4
 mysqlclient==2.0.1
 numpy==1.19.1
